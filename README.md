@@ -10,5 +10,7 @@ Developers:
 78029 Vasco Pombo vascopombo
 
 76508 Bruno Soalheira bruno.1994.0@gmail.com brunopkr
+
+81933 João Carreira JoaoCarreira
 ...
 
