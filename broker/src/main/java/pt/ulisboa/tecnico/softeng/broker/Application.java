@@ -31,6 +31,8 @@ public class Application {
 		adventure.process();
 		
 		Hotel hotel = new Hotel("HOTEL01", "Marina");
+		Room room = new Room(hotel, "25", Type.SINGLE);
+		Booking reserva = room.reserve(Type.SINGLE, new LocalDate(), new LocalDate()); 
 		//Booking booking = new Booking(hotel, new LocalDate(), new LocalDate());
 		
 		ActivityProvider activeprov = new ActivityProvider("ACTI01", "Sporjovem");
@@ -42,7 +44,7 @@ public class Application {
 		System.out.println("Your payment reference is " + adventure.getBankPayment() + " and you have "
 				+ account.getBalance() + " euros left in your account");
 		
-		//System.out.println("Your hotel booking reference is " + booking.getReference());
+		System.out.println("Your hotel booking reference is " + reserva.getReference());
 		
 		System.out.println("Your activity booking reference is " + activbooking.getReference());
 		
