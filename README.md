@@ -14,3 +14,16 @@ Developers:
 81933 João Carreira JoaoCarreira
 ...
 
+_____________________________________________
+
+Módulos:
+
+Módulo Activity:
+78045 André Monteiro AndreFBM 
+78029 Vasco Pombo vascopombo
+77915 Gonçalo Santos 71514311215
+
+Módulo Bank:
+
+Módulo Hotel:
+
