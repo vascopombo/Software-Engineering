@@ -27,4 +27,8 @@ Módulo Bank/Broker:
 81933 João Carreira JoaoCarreira
 
 Módulo Hotel:
+70466 Hugo Almeida almeidahugo
+76508 Bruno Soalheira brunopkr
+
+
 
