@@ -23,7 +23,8 @@ Módulo Activity:
 78029 Vasco Pombo vascopombo
 77915 Gonçalo Santos 71514311215
 
-Módulo Bank:
+Módulo Bank/Broker:
+81933 João Carreira JoaoCarreira
 
 Módulo Hotel:
 
