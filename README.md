@@ -12,6 +12,9 @@ Developers:
 76508 Bruno Soalheira bruno.1994.0@gmail.com brunopkr
 
 81933 João Carreira JoaoCarreira
+
+77915 Goncalo Santos goncalossantos@msn.com 71514311215
+
 ...
 
 _____________________________________________
