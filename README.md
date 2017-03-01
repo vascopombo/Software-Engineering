@@ -30,7 +30,7 @@ Módulo Activity:
 
 Módulo Bank/Broker:
 81933 João Carreira JoaoCarreira
-
+82011 João Costa JoaoC0sta
 Módulo Hotel:
 70466 Hugo Almeida almeidahugo
 76508 Bruno Soalheira brunopkr
