@@ -18,7 +18,8 @@ public class Hotel {
 
 	public Hotel(String code, String name) {
 		checkCode(code);
-
+		checkUniqueCode(code);
+		
 		this.code = code;
 		this.name = name;
 		Hotel.hotels.add(this);
@@ -27,6 +28,14 @@ public class Hotel {
 	private void checkCode(String code) {
 		if (code.length() != Hotel.CODE_SIZE) {
 			throw new HotelException();
+		}
+	}	
+	
+	//verificar que nao existe nenhum codigo igual nos hoteis ja existentes
+	public void checkUniqueCode(String code) {
+		for (Hotel hotel : hotels) { 
+			if (hotel.code.equals(code))
+				throw new HotelException();
 		}
 	}
 
