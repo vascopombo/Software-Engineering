@@ -11,11 +11,11 @@ Developers:
 
 76508 Bruno Soalheira bruno.1994.0@gmail.com brunopkr
 
-81933 João Carreira JoaoCarreira
+81933 João Carreira JoaoCarreira jottapedro96@hotmail.com
 
 77915 Goncalo Santos goncalossantos@msn.com 71514311215
 
-82011 João Costa JoaoC0sta
+82011 João Costa JoaoC0sta joao.costa1195@gmail.com
 
 ...
 
@@ -31,6 +31,7 @@ Módulo Activity:
 Módulo Bank/Broker:
 81933 João Carreira JoaoCarreira
 82011 João Costa JoaoC0sta
+
 Módulo Hotel:
 70466 Hugo Almeida almeidahugo
 76508 Bruno Soalheira brunopkr
