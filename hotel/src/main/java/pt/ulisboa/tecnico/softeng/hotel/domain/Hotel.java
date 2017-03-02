@@ -18,6 +18,7 @@ public class Hotel {
 
 	public Hotel(String code, String name) {
 		checkCode(code);
+		checkUniqueCode(code);
 
 		this.code = code;
 		this.name = name;
@@ -29,8 +30,15 @@ public class Hotel {
 			throw new HotelException();
 		}
 	}
-
-	public Room hasVacancy(Room.Type type, LocalDate arrival, LocalDate departure) {
+	
+	private void checkUniqueCode(String code) {
+		for (Hotel hotel : hotels) {
+			if (hotel.code.equals(code))
+				throw new HotelException();
+		}
+	}
+	
+public Room hasVacancy(Room.Type type, LocalDate arrival, LocalDate departure) {
 		for (Room room : this.rooms) {
 			if (room.isFree(type, arrival, departure)) {
 				return room;
@@ -48,6 +56,11 @@ public class Hotel {
 	}
 
 	void addRoom(Room room) {
+		for(Room roo: rooms){
+			if(roo.getNumber() == room.getNumber()) {
+				throw new HotelException();
+			}
+		}
 		this.rooms.add(room);
 	}
 

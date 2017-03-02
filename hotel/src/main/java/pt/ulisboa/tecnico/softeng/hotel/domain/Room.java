@@ -22,11 +22,18 @@ public class Room {
 	private final Set<Booking> bookings = new HashSet<>();
 
 	public Room(Hotel hotel, String number, Type type) {
+		checkNumber(number);
 		this.hotel = hotel;
 		this.number = number;
 		this.type = type;
 
 		this.hotel.addRoom(this);
+	}
+	
+	private void checkNumber(String number) {
+		if (!(number.chars().allMatch( Character::isDigit))) {
+			throw new HotelException();
+		}
 	}
 
 	Hotel getHotel() {
