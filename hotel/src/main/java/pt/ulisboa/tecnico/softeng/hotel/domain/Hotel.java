@@ -31,8 +31,7 @@ public class Hotel {
 		}
 	}	
 	
-	//verificar que nao existe nenhum codigo igual nos hoteis ja existentes
-	public void checkUniqueCode(String code) {
+	private void checkUniqueCode(String code) {
 		for (Hotel hotel : hotels) { 
 			if (hotel.code.equals(code))
 				throw new HotelException();
