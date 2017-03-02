@@ -29,10 +29,10 @@ public class Hotel {
 		if (code.length() != Hotel.CODE_SIZE) {
 			throw new HotelException();
 		}
-	}
+	}	
 	
 	private void checkUniqueCode(String code) {
-		for (Hotel hotel : hotels) {
+		for (Hotel hotel : hotels) { 
 			if (hotel.code.equals(code))
 				throw new HotelException();
 		}
