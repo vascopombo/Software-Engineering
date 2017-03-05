@@ -17,7 +17,7 @@ Developers:
 
 82011 João Costa JoaoC0sta joao.costa1195@gmail.com
 
-...
+76446 Diogo Carlos diogo.carlos@tecnico.ulisboa.pt DigasMC
 
 _____________________________________________
 
