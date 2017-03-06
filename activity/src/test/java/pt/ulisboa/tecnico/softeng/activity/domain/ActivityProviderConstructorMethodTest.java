@@ -19,8 +19,13 @@ public class ActivityProviderConstructorMethodTest {
 	}
 	
 	@Test(expected = ActivityException.class)
-	public void codeSize(){
+	public void codeSizeOver(){
 		ActivityProvider provider = new ActivityProvider("XPTO999", "Carcavelos");
+	}
+	
+	@Test(expected = ActivityException.class)
+	public void codeSizeUnder(){
+		ActivityProvider provider = new ActivityProvider("XPTO9", "Carcavelos");
 	}
 
 	@Test(expected = ActivityException.class)

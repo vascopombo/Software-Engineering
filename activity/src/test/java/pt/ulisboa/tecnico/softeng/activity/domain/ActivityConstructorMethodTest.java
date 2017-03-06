@@ -43,7 +43,7 @@ public class ActivityConstructorMethodTest {
 	public void testCapacity(){
 		Activity activity = new Activity(this.provider, "Shooting", 18, 80, 0);
 	}
-
+	
 	@After
 	public void tearDown() {
 		ActivityProvider.providers.clear();
