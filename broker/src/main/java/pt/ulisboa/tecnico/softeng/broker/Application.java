@@ -36,7 +36,7 @@ public class Application {
 		//Booking booking = new Booking(hotel, new LocalDate(), new LocalDate());
 		
 		ActivityProvider activeprov = new ActivityProvider("ACTI01", "Sporjovem");
-		Activity activity = new Activity(activeprov, "Rapel", 15, 88, 10);
+		Activity activity = new Activity(activeprov, "Rapel", 18, 88, 10);
 		ActivityOffer activeoffer = new ActivityOffer(activity, new LocalDate(), new LocalDate());
 		pt.ulisboa.tecnico.softeng.activity.domain.Booking activbooking = new pt.ulisboa.tecnico.softeng.activity.domain.Booking(activeprov, activeoffer);
 		
