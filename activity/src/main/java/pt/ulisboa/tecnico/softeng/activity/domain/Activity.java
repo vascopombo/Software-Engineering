@@ -20,6 +20,7 @@ public class Activity {
 	public Activity(ActivityProvider provider, String name, int minAge, int maxAge, int capacity) {
 		checkMinAge(minAge);
 		checkMaxAge(maxAge);
+		checkAges(minAge, maxAge);
 		checkCapacity(capacity);
 		
 		this.code = provider.getCode() + Integer.toString(++Activity.counter);
@@ -39,6 +40,12 @@ public class Activity {
 	private void checkMaxAge(int maxAge){
 		if(maxAge >= 100)
 			throw new ActivityException();
+	}
+	
+	private void checkAges(int minAge, int maxAge){
+		if (minAge > maxAge){
+			throw new ActivityException();
+		}
 	}
 	
 	private void checkCapacity(int capacity){

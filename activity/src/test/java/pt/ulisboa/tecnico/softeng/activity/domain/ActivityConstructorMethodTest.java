@@ -40,6 +40,11 @@ public class ActivityConstructorMethodTest {
 	}
 	
 	@Test(expected = ActivityException.class)
+	public void testAges(){
+		Activity activity = new Activity(this.provider, "Rapel", 81, 80, 25);
+	}
+	
+	@Test(expected = ActivityException.class)
 	public void testCapacity(){
 		Activity activity = new Activity(this.provider, "Shooting", 18, 80, 0);
 	}
