@@ -17,6 +17,11 @@ public class ActivityProviderConstructorMethodTest {
 		Assert.assertEquals(1, ActivityProvider.providers.size());
 		Assert.assertEquals(0, provider.getNumberOfActivities());
 	}
+	
+	@Test(expected = ActivityException.class)
+	public void codeSize(){
+		ActivityProvider provider = new ActivityProvider("XPTO999", "Carcavelos");
+	}
 
 	@Test(expected = ActivityException.class)
 	public void uniqueName() {
