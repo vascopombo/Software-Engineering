@@ -18,6 +18,12 @@ public class ActivityProviderConstructorMethodTest {
 		Assert.assertEquals(0, provider.getNumberOfActivities());
 	}
 	
+	@Test
+	public void codeSizeSuccess(){
+		ActivityProvider provider = new ActivityProvider("XPTO99", "Carcavelos");
+		Assert.assertTrue(provider.getCode().length() == ActivityProvider.CODE_SIZE);
+	}
+	
 	@Test(expected = ActivityException.class)
 	public void codeSizeOver(){
 		ActivityProvider provider = new ActivityProvider("XPTO999", "Carcavelos");

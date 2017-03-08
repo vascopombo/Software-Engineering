@@ -31,6 +31,7 @@ Módulo Activity:
 Módulo Bank/Broker:
 81933 João Carreira JoaoCarreira
 82011 João Costa JoaoC0sta
+76446 Diogo Carlos DigasMC
 
 Módulo Hotel:
 70466 Hugo Almeida almeidahugo
