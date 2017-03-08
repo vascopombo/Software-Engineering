@@ -31,7 +31,7 @@ public class Room {
 	}
 	
 	private void checkNumber(String number) {
-		if (!(number.chars().allMatch( Character::isDigit))) {
+		if (!(number.matches("^\\d+$"))){
 			throw new HotelException();
 		}
 	}
