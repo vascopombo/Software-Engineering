@@ -34,10 +34,21 @@ public class HotelConstructorTest {
 		Hotel hotel = new Hotel("XPTO1234", "Andorra");
 	}
 	
+	@Test
+	public void validCodeLength(){
+		Hotel hotel = new Hotel("XPTO123", "Andorra");
+	}
+	
 	@Test(expected = HotelException.class)
 	public void uniqueId() {
 		Hotel hotel = new Hotel("XPTO123", "Londres");
 		Hotel hotel1 = new Hotel("XPTO123", "Andorra");
+	}
+	
+	@Test
+	public void uniqueId1() {
+		Hotel hotel = new Hotel("XPTO124", "Londres");
+		Hotel hotel1 = new Hotel("XPTO123", "Londres");
 	}
 
 	@After
