@@ -33,6 +33,62 @@ public class BookingConflictMethodTest {
 
 		Assert.assertFalse(this.booking.conflict(arrival, departure));
 	}
+	
+	@Test
+	public void conflictArrivalAfterDepartureAfter() {
+		LocalDate arrival = new LocalDate(2016, 12, 20);
+		LocalDate departure = new LocalDate(2016, 12, 25);
+
+		Assert.assertTrue(this.booking.conflict(arrival, departure));
+	}
+	
+	@Test
+	public void conflictInMiddle() {
+		LocalDate arrival = new LocalDate(2016, 12, 20);
+		LocalDate departure = new LocalDate(2016, 12, 22);
+
+		Assert.assertTrue(this.booking.conflict(arrival, departure));
+	}
+	
+	@Test
+	public void conflictArrivalBeforeDepartAfter() {
+		LocalDate arrival = new LocalDate(2016, 12, 18);
+		LocalDate departure = new LocalDate(2016, 12, 25);
+
+		Assert.assertTrue(this.booking.conflict(arrival, departure));
+	}
+	
+	@Test
+	public void conflictEqualDate() {
+		LocalDate arrival = new LocalDate(2016, 12, 19);
+		LocalDate departure = new LocalDate(2016, 12, 24);
+
+		Assert.assertTrue(this.booking.conflict(arrival, departure));
+	}
+	
+	@Test
+	public void conflictArrivalBeforeDepartBefore() {
+		LocalDate arrival = new LocalDate(2016, 12, 18);
+		LocalDate departure = new LocalDate(2016, 12, 20);
+
+		Assert.assertTrue(this.booking.conflict(arrival, departure));
+	}
+	
+	@Test
+	public void conflictArrivalBeforeDepartEqual() {
+		LocalDate arrival = new LocalDate(2016, 12, 18);
+		LocalDate departure = new LocalDate(2016, 12, 24);
+
+		Assert.assertTrue(this.booking.conflict(arrival, departure));
+	}
+	
+	@Test
+	public void conflictArrivalEqualDepartAfter() {
+		LocalDate arrival = new LocalDate(2016, 12, 19);
+		LocalDate departure = new LocalDate(2016, 12, 25);
+
+		Assert.assertTrue(this.booking.conflict(arrival, departure));
+	}
 
 	@After
 	public void tearDown() {
