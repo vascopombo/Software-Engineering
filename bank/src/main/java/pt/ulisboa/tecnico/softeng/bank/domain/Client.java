@@ -1,6 +1,7 @@
 package pt.ulisboa.tecnico.softeng.bank.domain;
 
 import pt.ulisboa.tecnico.softeng.bank.exception.BankException;
+import java.util.regex.Pattern;
 
 public class Client {
 	private static int counter = 0;
@@ -9,7 +10,7 @@ public class Client {
 	private final String ID;
 
 	public Client(Bank bank, String name) {
-		verifica(bank,name);
+		verifyClientArg(bank,name);
 		this.ID = Integer.toString(++Client.counter);
 		this.name = name;
 
@@ -24,14 +25,14 @@ public class Client {
 		return this.ID;
 	}
 	
-	public void verifica( Bank bank, String name){
+	public void verifyClientArg( Bank bank, String name){
 		if (bank==null || name==null){
 			throw new BankException();
 		}
-		else if(name==""){
+		else if(name.isEmpty()){
 			throw new BankException();
 		}
-		else if(name.trim().isEmpty()){
+		else if(name.replaceAll("\\+s","").trim().isEmpty()){
 			throw new BankException();
 		}
 	}

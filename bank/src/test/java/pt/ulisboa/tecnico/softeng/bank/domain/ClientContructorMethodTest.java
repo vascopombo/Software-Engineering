@@ -38,7 +38,6 @@ public class ClientContructorMethodTest {
 	public void nullArg2() {
 		Client client = new Client(null,"Joao");
 	}
-
 	
 	@Test(expected = BankException.class)
 	public void EmptyArg() {
@@ -46,13 +45,29 @@ public class ClientContructorMethodTest {
 	}
 
 	@Test(expected = BankException.class)
-	public void WhiteArg() {
+	public void WhiteArg1() {
 		Client client = new Client(this.bank,"      ");
 	}
 	
+	
 	@Test(expected = BankException.class)
-	public void WhiteArg1() {
-		Client client = new Client(this.bank," ");
+	public void WhiteArg2() {
+		Client client = new Client(this.bank,"		\t");
+	}
+	
+	@Test(expected = BankException.class)
+	public void WhiteArg3() {
+		Client client = new Client(this.bank,"		\n");
+	}
+	
+	@Test(expected = BankException.class)
+	public void WhiteArg4() {
+		Client client = new Client(this.bank,"		\r");
+	}
+	
+	@Test(expected = BankException.class)
+	public void WhiteArg5() {
+		Client client = new Client(this.bank,"   	\t  \r	\n");
 	}
 	
 	@After
