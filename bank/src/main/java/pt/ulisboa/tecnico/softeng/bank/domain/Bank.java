@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Set;
 
 import pt.ulisboa.tecnico.softeng.bank.exception.BankException;
+import java.util.regex.Pattern;
 
 public class Bank {
 	public static Set<Bank> banks = new HashSet<>();
@@ -19,7 +20,9 @@ public class Bank {
 	private final List<Operation> log = new ArrayList<>();
 
 	public Bank(String name, String code) {
+		checkArg(name,code);
 		checkCode(code);
+		checkUniqueCode(code);
 
 		this.name = name;
 		this.code = code;
@@ -33,6 +36,14 @@ public class Bank {
 		}
 	}
 
+	private void checkUniqueCode(String code){
+		for (Bank bank: banks){
+			if (code==bank.getCode()){
+				throw new BankException();
+			}
+		}
+	}
+	
 	String getName() {
 		return this.name;
 	}
@@ -90,6 +101,19 @@ public class Bank {
 			}
 		}
 		return null;
+	}
+	
+	public void checkArg(String name, String code){
+		if (code==null || name==null){
+			throw new BankException();
+		}
+		else if(name.isEmpty() || code.isEmpty()){
+			throw new BankException();
+		}
+		else if(name.replaceAll("\\s+","").trim().isEmpty() ||
+				code.replaceAll("\\s+","").trim().isEmpty()){
+			throw new BankException();
+		}
 	}
 
 }
