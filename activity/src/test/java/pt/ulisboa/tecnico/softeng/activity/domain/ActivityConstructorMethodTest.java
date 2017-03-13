@@ -37,6 +37,7 @@ public class ActivityConstructorMethodTest {
 	@Test(expected = ActivityException.class)
 	public void testMinAge(){
 		Activity activity = new Activity(this.provider, "Climbing", 17, 80, 25);
+		Activity activity1 = new Activity(this.provider, "Hiking", -100, 80, 25);
 	}
 	
 	@Test(expected = ActivityException.class)
@@ -54,6 +55,7 @@ public class ActivityConstructorMethodTest {
 	@Test(expected = ActivityException.class)
 	public void testCapacity(){
 		Activity activity = new Activity(this.provider, "Shooting", 18, 80, 0);
+		Activity activity1 = new Activity(this.provider, "Boxing", 18, 80, -200);
 	}
 	
 	@After
