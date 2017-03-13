@@ -34,16 +34,28 @@ public class ActivityProviderConstructorMethodTest {
 		ActivityProvider provider = new ActivityProvider("XPTO9", "Carcavelos");
 	}
 
+	@Test
+	public void uniqueNameSuccess(){
+		ActivityProvider provider = new ActivityProvider("XPTO99", "Carcavelos");
+		ActivityProvider provider1 = new ActivityProvider("XPTO17", "Caparica");
+	}
+
 	@Test(expected = ActivityException.class)
 	public void uniqueName() {
-		ActivityProvider provider = new ActivityProvider("XPTO12", "Sara");
-		ActivityProvider provider1 = new ActivityProvider("XPTO17", "Sara");
+		ActivityProvider provider = new ActivityProvider("XPTO12", "Caparica");
+		ActivityProvider provider1 = new ActivityProvider("XPTO17", "Caparica");
+	}
+
+	@Test
+	public void uniqueCodeSuccess(){
+		ActivityProvider provider = new ActivityProvider("XPTO99", "Carcavelos");
+		ActivityProvider provider1 = new ActivityProvider("XPTO17", "Caparica");
 	}
 
 	@Test(expected = ActivityException.class)
 	public void uniqueCode() {
-		ActivityProvider provider = new ActivityProvider("XPTO12", "Pedro");
-		ActivityProvider provider1 = new ActivityProvider("XPTO12", "Amilcar");
+		ActivityProvider provider = new ActivityProvider("XPTO12", "Carcavelos");
+		ActivityProvider provider1 = new ActivityProvider("XPTO12", "Caparica");
 	}
 
 	@After
