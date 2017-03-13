@@ -5,8 +5,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import pt.ulisboa.tecnico.softeng.bank.exception.BankException;
-
 public class AccountWithdrawMethodTest {
 	private Bank bank;
 	private Account account;
@@ -29,23 +27,6 @@ public class AccountWithdrawMethodTest {
 		Assert.assertEquals(this.account, operation.getAccount());
 		Assert.assertEquals(40, operation.getValue());
 	}
-
-
-	@Test(expected = BankException.class)
-	public void negVal(){
-		this.account.withdraw(-10);
-	} 
-
-	@Test(expected = BankException.class)
-	public void zerVal(){
-		this.account.withdraw(0);
-	} 
-
-	@Test(expected = BankException.class)
-	public void moreThanVal(){
-		this.account.withdraw(200);
-	} 
-
 
 	@After
 	public void tearDown() {
