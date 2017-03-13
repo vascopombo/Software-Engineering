@@ -51,9 +51,14 @@ public class Account {
 			throw new BankException();
 		}
 
+		if(amount <= 0){
+			throw new BankException();
+		}
+
 		this.balance = this.balance - amount;
 
 		return new Operation(Operation.Type.WITHDRAW, this, amount).getReference();
 	}
+
 
 }
