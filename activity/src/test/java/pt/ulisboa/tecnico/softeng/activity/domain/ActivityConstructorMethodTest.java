@@ -29,6 +29,11 @@ public class ActivityConstructorMethodTest {
 		Assert.assertEquals(1, this.provider.getNumberOfActivities());
 	}
 	
+	@Test
+	public void equalAgeSuccess(){
+		Activity activity = new Activity(this.provider, "BungeeJumping", 99, 99, 25);
+	}
+	
 	@Test(expected = ActivityException.class)
 	public void testMinAge(){
 		Activity activity = new Activity(this.provider, "Climbing", 17, 80, 25);
@@ -37,11 +42,13 @@ public class ActivityConstructorMethodTest {
 	@Test(expected = ActivityException.class)
 	public void testMaxAge(){
 		Activity activity = new Activity(this.provider, "SkyDiving", 18, 100, 25);
+		Activity activity1 = new Activity(this.provider, "Rafting", 18, 9999, 25);
 	}
 	
 	@Test(expected = ActivityException.class)
 	public void testAges(){
 		Activity activity = new Activity(this.provider, "Rapel", 81, 80, 25);
+		Activity activity1 = new Activity(this.provider, "Rapel", 99, 18, 25);
 	}
 	
 	@Test(expected = ActivityException.class)
