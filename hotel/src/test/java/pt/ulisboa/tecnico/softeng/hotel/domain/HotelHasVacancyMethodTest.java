@@ -14,11 +14,11 @@ public class HotelHasVacancyMethodTest {
 	@Before
 	public void setUp() {
 		this.hotel = new Hotel("XPTO123", "Paris");
-		new Room(this.hotel, "01", Type.DOUBLE);
 	}
 
 	@Test
 	public void hasVacancy() {
+		new Room(this.hotel, "01", Type.DOUBLE);
 		LocalDate arrival = new LocalDate(2016, 12, 19);
 		LocalDate departure = new LocalDate(2016, 12, 21);
 
@@ -29,6 +29,7 @@ public class HotelHasVacancyMethodTest {
 	
 	@Test
 	public void hasNoVacancy() {
+		new Room(this.hotel, "01", Type.DOUBLE);
 		LocalDate arrival = new LocalDate(2016, 12, 19);
 		LocalDate departure = new LocalDate(2016, 12, 21);
 	    Hotel.reserveHotel(Type.DOUBLE, arrival, departure);
@@ -38,6 +39,25 @@ public class HotelHasVacancyMethodTest {
 
 		Room room = this.hotel.hasVacancy(Type.DOUBLE, arrival1, departure1);
 
+		Assert.assertNull(room);
+	}
+	
+	@Test
+	public void hasNoRooms() {
+	    LocalDate arrival = new LocalDate(2016, 12, 18);
+		LocalDate departure = new LocalDate(2016, 12, 20);
+
+		Room room = this.hotel.hasVacancy(Type.DOUBLE, arrival, departure);
+		Assert.assertNull(room);
+	}
+
+	@Test
+	public void hasNoRoomType() {
+		new Room(this.hotel, "01", Type.DOUBLE);
+	    LocalDate arrival = new LocalDate(2016, 12, 18);
+		LocalDate departure = new LocalDate(2016, 12, 20);
+
+		Room room = this.hotel.hasVacancy(Type.SINGLE, arrival, departure);
 		Assert.assertNull(room);
 	}
 
