@@ -33,6 +33,10 @@ public class ActivityOffer {
 			throw new ActivityException();
 		}
 	}
+	
+	public int getCap(){
+		return this.capacity;
+	}
 
 	LocalDate getBegin() {
 		return this.begin;
