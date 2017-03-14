@@ -31,6 +31,10 @@ public class ActivityProvider {
 		if (code.length() != ActivityProvider.CODE_SIZE) {
 			throw new ActivityException();
 		}
+		
+		if (code.contains(" ")){
+			throw new ActivityException();
+		}
 	}
 
 	private void checkUniqueName(String name) {

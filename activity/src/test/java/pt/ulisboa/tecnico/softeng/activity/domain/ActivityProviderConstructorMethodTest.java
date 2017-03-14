@@ -25,6 +25,11 @@ public class ActivityProviderConstructorMethodTest {
 	}
 	
 	@Test(expected = ActivityException.class)
+	public void checkCodeSpaces(){
+		ActivityProvider provider = new ActivityProvider("XPT  9", "Carcavelos");
+	}
+	
+	@Test(expected = ActivityException.class)
 	public void codeSizeOver(){
 		ActivityProvider provider = new ActivityProvider("XPTO999", "Carcavelos");
 	}
