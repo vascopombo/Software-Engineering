@@ -30,6 +30,14 @@ public class ActivityOfferConstructorMethodTest {
 		Assert.assertEquals(0, offer.getNumberOfBookings());
 	}
 
+	@Test
+	public void sameDateSuccess() {
+		LocalDate begin = new LocalDate(2016, 12, 21);
+		LocalDate end = new LocalDate(2016, 12, 21);
+
+		ActivityOffer offer = new ActivityOffer(this.activity, begin, end);
+	}
+
 	@Test(expected = ActivityException.class)
 	public void correctYear(){
 
