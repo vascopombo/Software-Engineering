@@ -20,11 +20,24 @@ public class ActivityProvider {
 		checkCode(code);
 		checkUniqueName(name);
 		checkUniqueCode(code);
+		checkArgs(code,name);
 
 		this.code = code;
 		this.name = name;
 
 		ActivityProvider.providers.add(this);
+	}
+
+	private void checkArgs(String code, String name){
+		if (code==null || name==null){
+			throw new ActivityException();
+		}
+		else if(name.isEmpty() || code.isEmpty()){
+			throw new ActivityException();
+		}
+		else if(name.replaceAll("\\s+","").trim().isEmpty() || code.replaceAll("\\s+","").trim().isEmpty()){
+			throw new ActivityException();
+		}
 	}
 
 	private void checkCode(String code) {

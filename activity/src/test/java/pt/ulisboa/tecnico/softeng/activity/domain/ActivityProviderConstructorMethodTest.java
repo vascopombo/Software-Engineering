@@ -23,6 +23,12 @@ public class ActivityProviderConstructorMethodTest {
 		ActivityProvider provider = new ActivityProvider("XPTO99", "Carcavelos");
 		Assert.assertTrue(provider.getCode().length() == ActivityProvider.CODE_SIZE);
 	}
+
+	@Test
+	public void uniqueNameAndCodeSuccess(){
+		ActivityProvider provider = new ActivityProvider("XPTO99", "Carcavelos");
+		ActivityProvider provider1 = new ActivityProvider("XPTO17", "Caparica");
+	}
 	
 	@Test(expected = ActivityException.class)
 	public void checkCodeSpaces(){
@@ -38,22 +44,10 @@ public class ActivityProviderConstructorMethodTest {
 	public void codeSizeUnder(){
 		ActivityProvider provider = new ActivityProvider("XPTO9", "Carcavelos");
 	}
-
-	@Test
-	public void uniqueNameSuccess(){
-		ActivityProvider provider = new ActivityProvider("XPTO99", "Carcavelos");
-		ActivityProvider provider1 = new ActivityProvider("XPTO17", "Caparica");
-	}
-
+	
 	@Test(expected = ActivityException.class)
 	public void uniqueName() {
 		ActivityProvider provider = new ActivityProvider("XPTO12", "Caparica");
-		ActivityProvider provider1 = new ActivityProvider("XPTO17", "Caparica");
-	}
-
-	@Test
-	public void uniqueCodeSuccess(){
-		ActivityProvider provider = new ActivityProvider("XPTO99", "Carcavelos");
 		ActivityProvider provider1 = new ActivityProvider("XPTO17", "Caparica");
 	}
 
@@ -61,6 +55,51 @@ public class ActivityProviderConstructorMethodTest {
 	public void uniqueCode() {
 		ActivityProvider provider = new ActivityProvider("XPTO12", "Carcavelos");
 		ActivityProvider provider1 = new ActivityProvider("XPTO12", "Caparica");
+	}
+
+	/*@Test(expected = ActivityException.class)
+	public void nullArgs() {
+		ActivityProvider provider = new ActivityProvider(null,null);
+	}
+
+	@Test(expected = ActivityException.class)
+	public void nullArg1() {
+		ActivityProvider provider = new ActivityProvider(null,"Carcavelos");
+	} */
+
+	@Test(expected = ActivityException.class)
+	public void nullArg2() {
+		ActivityProvider provider = new ActivityProvider("XPTO12",null);
+	}
+
+	@Test(expected = ActivityException.class)
+	public void EmptyArgs() {
+		ActivityProvider provider = new ActivityProvider("","");
+	}
+
+	@Test(expected = ActivityException.class)
+	public void EmptyArg1() {
+		ActivityProvider provider = new ActivityProvider("","Caparica");
+	}
+
+	@Test(expected = ActivityException.class)
+	public void EmptyArg2() {
+		ActivityProvider provider = new ActivityProvider("XPTO17","");
+	}
+
+	@Test(expected = ActivityException.class)
+	public void whitespaceArgs() {
+		ActivityProvider provider = new ActivityProvider("      ","      ");
+	}
+
+	@Test(expected = ActivityException.class)
+	public void whitespaceArg1() {
+		ActivityProvider provider = new ActivityProvider("      ","Carcavelos");
+	}
+
+	@Test(expected = ActivityException.class)
+	public void whitespaceArg2() {
+		ActivityProvider provider = new ActivityProvider("XPTO99","       ");
 	}
 
 	@After
