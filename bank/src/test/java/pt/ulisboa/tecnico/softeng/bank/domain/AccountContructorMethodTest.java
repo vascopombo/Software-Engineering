@@ -4,6 +4,7 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import pt.ulisboa.tecnico.softeng.bank.exception.BankException;
 
 public class AccountContructorMethodTest {
 	Bank bank;
@@ -27,6 +28,28 @@ public class AccountContructorMethodTest {
 		Assert.assertTrue(this.bank.hasClient(this.client));
 	}
 
+	@Test(expected = BankException.class)
+	public void nullArg() {
+		Account account = new Account(null,null);
+	}
+	
+	@Test(expected = BankException.class)
+	public void nullArg1() {
+		Account account = new Account(this.bank,null);
+	}
+	
+	@Test(expected = BankException.class)
+	public void nullArg2() {
+		Account account = new Account(null,this.client);
+	}
+	
+	@Test(expected = BankException.class)
+	public void ClientArg() {
+		Client client_test= new Client(this.bank,"Joao");
+		this.bank.removeClient(client_test);
+		Account account = new Account(this.bank,client_test);
+	}
+	
 	@After
 	public void tearDown() {
 		Bank.banks.clear();

@@ -71,6 +71,10 @@ public class Bank {
 	void addClient(Client client) {
 		this.clients.add(client);
 	}
+	
+	void removeClient(Client client) {
+		this.clients.remove(client);
+	}
 
 	void addLog(Operation operation) {
 		this.log.add(operation);

@@ -11,6 +11,7 @@ public class Account {
 	private int balance;
 
 	public Account(Bank bank, Client client) {
+		check(bank,client);
 		this.bank = bank;
 		this.IBAN = bank.getCode() + Integer.toString(++Account.counter);
 		this.client = client;
@@ -59,6 +60,19 @@ public class Account {
 
 		return new Operation(Operation.Type.WITHDRAW, this, amount).getReference();
 	}
+<<<<<<< Updated upstream
 
 
+=======
+	
+	public void check(Bank bank, Client client){
+		boolean a=false;
+		if (bank==null || client==null){
+			throw new BankException();
+		}
+		else if(a==bank.hasClient(client)){
+			throw new BankException();
+		}
+	}
+>>>>>>> Stashed changes
 }
