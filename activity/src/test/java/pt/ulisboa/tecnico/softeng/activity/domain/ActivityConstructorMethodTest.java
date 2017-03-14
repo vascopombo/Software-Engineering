@@ -35,6 +35,21 @@ public class ActivityConstructorMethodTest {
 	}
 	
 	@Test(expected = ActivityException.class)
+	public void emptyArg(){
+		Activity activity = new Activity(this.provider, "", 18, 80, 25);
+	}
+	
+	@Test(expected = ActivityException.class)
+	public void nullArg(){
+		Activity activity = new Activity(this.provider, null, 18, 80, 25);
+	}
+	
+	@Test(expected = ActivityException.class)
+	public void whitespaceArg(){
+		Activity activity = new Activity(this.provider, "     ", 18, 80, 25);
+	}
+	
+	@Test(expected = ActivityException.class)
 	public void testMinAge(){
 		Activity activity = new Activity(this.provider, "Climbing", 17, 80, 25);
 		Activity activity1 = new Activity(this.provider, "Hiking", -100, 80, 25);
