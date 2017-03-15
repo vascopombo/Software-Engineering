@@ -60,11 +60,7 @@ public class Account {
 
 		return new Operation(Operation.Type.WITHDRAW, this, amount).getReference();
 	}
-<<<<<<< Updated upstream
 
-
-=======
-	
 	public void check(Bank bank, Client client){
 		boolean a=false;
 		if (bank==null || client==null){
@@ -74,5 +70,4 @@ public class Account {
 			throw new BankException();
 		}
 	}
->>>>>>> Stashed changes
 }
