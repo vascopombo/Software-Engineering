@@ -53,7 +53,7 @@ public class BankHasAccountMethodTest {
 
 	@Test(expected = BankException.class)
 	public void emptyIBAN() {
-		Account = new Account(this.bank, this.client);
+		Account account = new Account(this.bank, this.client);
 		Account result = this.bank.getAccount("");
 	}
 
