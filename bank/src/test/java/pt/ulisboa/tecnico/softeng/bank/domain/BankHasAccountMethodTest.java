@@ -27,29 +27,36 @@ public class BankHasAccountMethodTest {
 	}
 
 	@Test(expected = BankException.class)
-		public void nullIBAN(){
-			Account account = new Account(this.bank, this.client);
-			Account result = this.bank.getAccount(null);
-		}
+	public void nullIBAN(){
+		Account account = new Account(this.bank, this.client);
+		Account result = this.bank.getAccount(null);
+	}
 
 	@Test(expected = BankException.class)
-		public void noAccounts(){
-			Account result = this.bank.getAccount("TEST_IBAN");
-		}
+	public void noAccounts(){
+		Account result = this.bank.getAccount("TEST_IBAN");
+	}
 
 	@Test(expected = BankException.class)
-		public void wrongIBAN(){
-			Client c1 = new Client(this.bank, "João");
-			Client c2 = new Client(this.bank, "Miguel");
-			Client c3 = new Client(this.bank, "Diogo");
+	public void wrongIBAN(){
+		Client c1 = new Client(this.bank, "João");
+		Client c2 = new Client(this.bank, "Miguel");
+		Client c3 = new Client(this.bank, "Diogo");
 
-			Account acc1 = new Account(this.bank, this.client);
-			Account acc2 = new Account(this.bank, c1);
-			Account acc3 = new Account(this.bank, c2);
-			Account acc4 = new Account(this.bank, c3);
+		Account acc1 = new Account(this.bank, this.client);
+		Account acc2 = new Account(this.bank, c1);
+		Account acc3 = new Account(this.bank, c2);
+		Account acc4 = new Account(this.bank, c3);
 
-			Account result = this.bank.getAccount("TEST_IBAN");
-		}
+		Account result = this.bank.getAccount("TEST_IBAN");
+	}
+
+	@Test(expected = BankException.class)
+	public void emptyIBAN() {
+		Account = new Account(this.bank, this.client);
+		Account result = this.bank.getAccount("");
+	}
+
 	@After
 	public void tearDown() {
 		Bank.banks.clear();
