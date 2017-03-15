@@ -57,7 +57,7 @@ public class ActivityProviderConstructorMethodTest {
 		ActivityProvider provider1 = new ActivityProvider("XPTO12", "Caparica");
 	}
 
-	/*@Test(expected = ActivityException.class)
+	@Test(expected = ActivityException.class)
 	public void nullArgs() {
 		ActivityProvider provider = new ActivityProvider(null,null);
 	}
@@ -65,7 +65,7 @@ public class ActivityProviderConstructorMethodTest {
 	@Test(expected = ActivityException.class)
 	public void nullArg1() {
 		ActivityProvider provider = new ActivityProvider(null,"Carcavelos");
-	} */
+	} 
 
 	@Test(expected = ActivityException.class)
 	public void nullArg2() {

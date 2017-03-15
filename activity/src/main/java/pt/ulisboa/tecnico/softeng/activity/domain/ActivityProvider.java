@@ -17,10 +17,11 @@ public class ActivityProvider {
 	private final Set<Activity> activities = new HashSet<>();
 
 	public ActivityProvider(String code, String name) {
+		checkArgs(code,name);
 		checkCode(code);
 		checkUniqueName(name);
 		checkUniqueCode(code);
-		checkArgs(code,name);
+		
 
 		this.code = code;
 		this.name = name;
