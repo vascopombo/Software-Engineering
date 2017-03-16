@@ -8,16 +8,17 @@ public class Booking {
 	private final String reference;
 
 	public Booking(ActivityProvider provider, ActivityOffer offer) {
+		this.reference = provider.getCode() + Integer.toString(++Booking.counter);
+		
 		int capacity = offer.getCap();
 		int nrBookings = offer.getNumberOfBookings();
 		bookingValidator(capacity, nrBookings);
-		this.reference = provider.getCode() + Integer.toString(++Booking.counter);
 
 		offer.addBooking(this);
 	}
 	
 	public void bookingValidator(int capacity, int nrBookings){
-		if(capacity < nrBookings){
+		if(capacity < nrBookings + 1){
 			throw new ActivityException();
 		}
 	}
