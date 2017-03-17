@@ -82,6 +82,9 @@ public class Activity {
 			if (matchAge(age) && offer.available(begin, end)) {
 				result.add(offer);
 			}
+			else{
+				throw new ActivityException();
+			}
 		}
 		return result;
 	}

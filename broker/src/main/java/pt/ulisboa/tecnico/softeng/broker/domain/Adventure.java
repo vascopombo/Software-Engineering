@@ -8,6 +8,10 @@ import pt.ulisboa.tecnico.softeng.broker.interfaces.ActivityInterface;
 import pt.ulisboa.tecnico.softeng.broker.interfaces.BankInterface;
 import pt.ulisboa.tecnico.softeng.broker.interfaces.HotelInterface;
 import pt.ulisboa.tecnico.softeng.hotel.domain.Room;
+import pt.ulisboa.tecnico.softeng.broker.exception.BrokerException;
+import pt.ulisboa.tecnico.softeng.bank.exception.BankException;
+import pt.ulisboa.tecnico.softeng.activity.domain.exception.ActivityException;
+import pt.ulisboa.tecnico.softeng.hotel.exception.HotelException;
 
 public class Adventure {
 	private static Logger logger = LoggerFactory.getLogger(Adventure.class);
@@ -78,10 +82,17 @@ public class Adventure {
 	}
 
 	public void process() {
-		logger.debug("process ID:{} ", this.ID);
-		this.bankPayment = BankInterface.processPayment(this.IBAN, this.amount);
-		this.roomBooking = HotelInterface.reserveHotel(Room.Type.SINGLE, this.begin, this.end);
-		this.activityBooking = ActivityInterface.reserveActivity(this.begin, this.end, this.age);
+		try{
+			logger.debug("process ID:{} ", this.ID);
+			this.bankPayment = BankInterface.processPayment(this.IBAN, this.amount);
+			this.roomBooking = HotelInterface.reserveHotel(Room.Type.SINGLE, this.begin, this.end);
+			this.activityBooking = ActivityInterface.reserveActivity(this.begin, this.end, this.age);
+		} catch (ActivityException a){
+			throw new BrokerException();
+		} catch (BankException b){
+			throw new BrokerException();
+		} catch (HotelException h){
+			throw new BrokerException();
+		}
 	}
-
 }
