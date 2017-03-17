@@ -7,6 +7,7 @@ import org.joda.time.LocalDate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+
 import pt.ulisboa.tecnico.softeng.hotel.exception.HotelException;
 
 public class Room {
@@ -22,6 +23,7 @@ public class Room {
 	private final Set<Booking> bookings = new HashSet<>();
 
 	public Room(Hotel hotel, String number, Type type) {
+		checkArgs(hotel, number, type);
 		checkNumber(number);
 		this.hotel = hotel;
 		this.number = number;
@@ -32,6 +34,15 @@ public class Room {
 	
 	private void checkNumber(String number) {
 		if (!(number.matches("^\\d+$"))){
+			throw new HotelException();
+		}
+	}
+	
+	private void checkArgs(Hotel hotel, String number, Type type){
+		if (hotel == null || type == null){
+			throw new HotelException();
+		}
+		if(number == null || number.isEmpty() || number.trim().length()==0){
 			throw new HotelException();
 		}
 	}

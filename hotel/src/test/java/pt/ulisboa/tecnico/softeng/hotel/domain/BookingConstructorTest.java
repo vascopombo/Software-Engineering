@@ -5,6 +5,7 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Test;
 
+
 import pt.ulisboa.tecnico.softeng.hotel.exception.HotelException;
 
 public class BookingConstructorTest {
@@ -43,6 +44,41 @@ public class BookingConstructorTest {
 
 			new Booking(hotel, arrival, departure);
 	}
+	
+	@Test(expected = HotelException.class)
+	public void nullArg(){
+		
+		Hotel hotel = new Hotel("XPTO123", "Londres");
+
+		LocalDate arrival = new LocalDate(2016, 12, 22);
+		LocalDate departure = new LocalDate(2016, 12, 30);
+		
+		new Booking (null, arrival, departure);
+	}
+	
+	@Test(expected = HotelException.class)
+	public void nullArg2(){
+		
+		Hotel hotel = new Hotel("XPTO123", "Londres");
+
+		LocalDate arrival = new LocalDate(2016, 12, 22);
+		LocalDate departure = new LocalDate(2016, 12, 30);
+		
+		new Booking (hotel, null, departure);
+	}
+	
+	@Test(expected = HotelException.class)
+	public void nullArg3(){
+		
+		Hotel hotel = new Hotel("XPTO123", "Londres");
+
+		LocalDate arrival = new LocalDate(2016, 12, 22);
+		LocalDate departure = new LocalDate(2016, 12, 30);
+		
+		new Booking (hotel, arrival, null);
+	}
+	
+	
 
 	@After
 	public void tearDown() {

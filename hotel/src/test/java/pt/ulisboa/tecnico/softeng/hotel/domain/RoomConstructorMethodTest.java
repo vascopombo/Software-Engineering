@@ -5,6 +5,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+
 import pt.ulisboa.tecnico.softeng.hotel.domain.Room.Type;
 import pt.ulisboa.tecnico.softeng.hotel.exception.HotelException;
 
@@ -48,6 +49,30 @@ public class RoomConstructorMethodTest {
 		new Room(this.hotel, "0,2", Type.DOUBLE);
 		}
 	
+	@Test(expected = HotelException.class)
+	public void emptyArg(){
+		new Room(this.hotel, "", Type.SINGLE);
+	}
+	
+	@Test(expected = HotelException.class)
+	public void nullArgs(){
+		new Room(this.hotel, null, Type.SINGLE);
+	}
+	
+	@Test(expected = HotelException.class)
+	public void nullArgs2(){
+		new Room(null, "01", Type.SINGLE);
+	}
+	
+	@Test(expected = HotelException.class)
+	public void nullArgs3(){
+		new Room(this.hotel, "01", null);
+	}
+	
+	@Test(expected = HotelException.class)
+	public void whitespaceArg(){
+		new Room(this.hotel, "  ", Type.SINGLE);
+	}
 	
 	@After
 	public void tearDown() {

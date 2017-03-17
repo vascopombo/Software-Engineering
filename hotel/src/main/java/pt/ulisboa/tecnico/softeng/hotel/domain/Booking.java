@@ -2,6 +2,7 @@ package pt.ulisboa.tecnico.softeng.hotel.domain;
 
 import org.joda.time.LocalDate;
 
+
 import pt.ulisboa.tecnico.softeng.hotel.exception.HotelException;
 
 public class Booking {
@@ -12,6 +13,7 @@ public class Booking {
 	private final LocalDate departure;
 
 	Booking(Hotel hotel, LocalDate arrival, LocalDate departure) {
+		checkArgs(hotel, arrival, departure);
 		this.reference = hotel.getCode() + Integer.toString(++Booking.counter);
 		
 		if(departure.isBefore(arrival)) {
@@ -20,6 +22,12 @@ public class Booking {
 		
 		this.arrival = arrival;
 		this.departure = departure;
+	}
+	
+	private void checkArgs(Hotel hotel, LocalDate arrival, LocalDate departure){
+		if(hotel == null || arrival == null || departure == null){
+			throw new HotelException();
+		}
 	}
 
 	public String getReference() {
