@@ -17,12 +17,20 @@ public class Hotel {
 	private final Set<Room> rooms = new HashSet<>();
 
 	public Hotel(String code, String name) {
+		checkArg(code);
+		checkArg(name);
 		checkCode(code);
 		checkUniqueCode(code);
 
 		this.code = code;
 		this.name = name;
 		Hotel.hotels.add(this);
+	}
+	
+	private void checkArg(String name){
+		if(name == null || name.isEmpty() || name.trim().length()==0){
+			throw new HotelException();
+		}
 	}
 
 	private void checkCode(String code) {

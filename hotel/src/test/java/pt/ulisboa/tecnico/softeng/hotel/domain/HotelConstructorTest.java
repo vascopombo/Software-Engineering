@@ -25,6 +25,36 @@ public class HotelConstructorTest {
 	}
 	
 	@Test(expected = HotelException.class)
+	public void emptyCode(){
+		Hotel hotel= new Hotel("", "Lisboa");
+	}
+	
+	@Test(expected = HotelException.class)
+	public void emptyName(){
+		Hotel hotel= new Hotel("XPTO123", "");
+	}
+	
+	@Test(expected = HotelException.class)
+	public void nullCode(){
+		Hotel hotel= new Hotel(null, "Lisboa");
+	}
+	
+	@Test(expected = HotelException.class)
+	public void nullName(){
+		Hotel hotel= new Hotel("XPTO123", null);
+	}
+	
+	@Test(expected = HotelException.class)
+	public void whitespaceCode(){
+		Hotel hotel= new Hotel("       ", "Lisboa");
+	}
+	
+	@Test(expected = HotelException.class)
+	public void whitespaceName(){
+		Hotel hotel= new Hotel("XPTO123", "        ");
+	}
+	
+	@Test(expected = HotelException.class)
 	public void invalidCodeLength(){
 		Hotel hotel = new Hotel("XPTO13", "Andorra");
 	}
