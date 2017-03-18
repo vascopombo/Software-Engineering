@@ -3,7 +3,7 @@ To run tests execute: mvn clean install
 
 Developers:
 
-78045 André Monteiro AndreFBM 
+78045 André Monteiro andre_1540@hotmail.com AndreFBM 
 
 70466 Hugo Almeida hugomiguelfa@gmail.com almeidahugo 
 
