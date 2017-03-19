@@ -102,6 +102,18 @@ public class AdventureProcessMethodTest {
 		adventure.process();
 	}
 	
+	@Test(expected = BrokerException.class)
+	public void IBANTest3(){
+		Adventure adventure = new Adventure(this.broker, this.begin, this.end, 15, "", 300);
+		adventure.process();
+	}
+	
+	@Test(expected = BrokerException.class)
+	public void IBANTest4(){
+		Adventure adventure = new Adventure(this.broker, this.begin, this.end, 15, "   \t \n", 300);
+		adventure.process();
+	}
+	
 	@After
 	public void tearDown() {
 		Bank.banks.clear();

@@ -148,8 +148,26 @@ public class AdventureConstructorMethodTest {
 			throw new BrokerException();
 		}
 	}
-
-
+	
+	@Test(expected = BrokerException.class)
+	public void nullBroker(){
+		LocalDate begin = new LocalDate(2016, 12, 19);
+		LocalDate end = new LocalDate(2016, 12, 21);
+		Adventure adventure = new Adventure(null, begin, end, 20, this.account.getIBAN(), 300);
+	}
+	
+	@Test(expected = BrokerException.class)
+	public void nullBegin(){
+		LocalDate end = new LocalDate(2016, 12, 21);
+		Adventure adventure = new Adventure(this.broker, null, end, 20, this.account.getIBAN(), 300);
+	}
+	
+	@Test(expected = BrokerException.class)
+	public void nullEnd(){
+		LocalDate begin = new LocalDate(2016, 12, 19);
+		Adventure adventure = new Adventure(this.broker, begin, null, 20, this.account.getIBAN(), 300);
+	}
+	
 	@After
 	public void tearDown() {
 		Broker.brokers.clear();

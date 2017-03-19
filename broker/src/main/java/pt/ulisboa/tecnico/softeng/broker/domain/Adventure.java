@@ -30,6 +30,7 @@ public class Adventure {
 	private String activityBooking;
 
 	public Adventure(Broker broker, LocalDate begin, LocalDate end, int age, String IBAN, int amount) {
+		verificaArg(broker, begin, end, age, IBAN, amount);
 		this.ID = broker.getCode() + Integer.toString(++counter);
 		this.broker = broker;
 		this.begin = begin;
@@ -79,6 +80,12 @@ public class Adventure {
 
 	public String getActivityBooking() {
 		return this.activityBooking;
+	}
+	
+	public void verificaArg(Broker broker, LocalDate begin, LocalDate end, int age, String IBAN, int amount){
+		if (broker==null || begin==null || end==null || IBAN==null){
+			throw new BrokerException();
+		}
 	}
 
 	public void process() {
