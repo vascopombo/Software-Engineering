@@ -212,6 +212,10 @@ public class Adventure {
 				// if (number of errors == 3) {
 				// setState(State.CANCELLED);
 				// }
+				state.incNumOfRemoteErrors();
+				if(state.getNumOfRemoteErrors() == 3){
+					setState(State.CANCELLED);
+				}
 				return;
 			}
 
