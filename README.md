@@ -5,7 +5,7 @@ To check test coverage execute: mvn clean cobertura:cobertura
 
 |   Number   |          Name           |            Email        |   Name GitHUb  | Grupo |
 | ---------- | ----------------------- | ----------------------- | ---------------| ----- |
-|            |                         |                         |                |   1   |
+|76508       |Bruno Soalheira          |bruno.1994.0@gmail.com   |brunopkr        |   1   |
 |            |                         |                         |                |   2   |
 |            |                         |                         |                |   3   |
 |            |                         |                         |                |   4   |
