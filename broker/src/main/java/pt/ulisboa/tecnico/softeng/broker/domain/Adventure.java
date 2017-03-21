@@ -224,13 +224,11 @@ public class Adventure {
 			} catch (ActivityException ae) {
 				setState(State.UNDO);
 			} catch (RemoteAccessException rae) {
-				// increment number of errors
-				// if (number of errors == 5) {
-				// adventure.setState(State.UNDO);
-				// }
-				// return;
+				state.incNumOfRemoteErrors();
+				if (state.getNumOfRemoteErrors() == 5){
+					setState(State.UNDO);
+				}
 			}
-
 			if (this.begin.equals(this.end)) {
 				setState(State.CONFIRMED);
 			} else {
