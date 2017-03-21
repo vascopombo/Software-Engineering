@@ -208,11 +208,15 @@ public class Adventure {
 			} catch (BankException be) {
 				setState(State.CANCELLED);
 			} catch (RemoteAccessException rae) {
-				// increment number of errors
-				// if (number of errors == 3) {
-				// setState(State.CANCELLED);
-				// }
-				return;
+					// increment number of errors
+					// if (number of errors == 3) {
+					// setState(State.CANCELLED);
+					// }
+					state.incNumOfRemoteErrors();
+					if(state.getNumOfRemoteErrors() == 3){
+							setState(State.CANCELLED);
+					}
+					return;
 			}
 
 			setState(State.RESERVE_ACTIVITY);
