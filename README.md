@@ -8,7 +8,7 @@ To check test coverage execute: mvn clean cobertura:cobertura
 |76508       |Bruno Soalheira          |bruno.1994.0@gmail.com   |brunopkr        |   1   |
 |70466       |Hugo Almeida             |hugomiguelfa@gmail.com   |almeidaHugo     |   2   |
 |            |                         |                         |                |   3   |
-|            |                         |                         |                |   4   |
+|77915       |Goncalo Santos           |goncalossantos@msn.com   |71514311215     |   4   |
 |            |                         |                         |                |   5   |
 |            |                         |                         |                |   6   |
 |            |                         |                         |                |   7   |
