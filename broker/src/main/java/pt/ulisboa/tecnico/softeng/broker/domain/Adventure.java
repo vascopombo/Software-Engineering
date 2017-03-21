@@ -244,11 +244,11 @@ public class Adventure {
 			} catch (HotelException rae) {
 				setState(State.UNDO);
 			} catch (RemoteAccessException rae) {
-				// increment number of errors
-				// if (number of errors == 10) {
-				// adventure.setState(State.UNDO);
-				// }
-				// return;
+				state.incNumOfRemoteErrors();
+				if (state.getNumOfRemoteErrors() == 10){
+					setState(State.UNDO);
+				}
+				return;
 			}
 
 			setState(State.CONFIRMED);
