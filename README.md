@@ -10,7 +10,7 @@ To check test coverage execute: mvn clean cobertura:cobertura
 |78045       |André Monteiro           |andre_1540@hotmail.com   |AndreFBM        |   3   |
 |77915       |Goncalo Santos           |goncalossantos@msn.com   |71514311215     |   4   |
 |78029       |Vasco Pombo              |vasco_pombo@hotmail.com  |vascopombo      |   5   |
-|            |                         |                         |                |   6   |
+|76446       |Diogo Carlos             |diogo.carlos@ist.utl.pt  |DigasMC         |   6   |
 |            |                         |                         |                |   7   |
 |            |                         |                         |                |   8   |
 |            |                         |                         |                |   9   |
