@@ -157,7 +157,9 @@ public class Adventure {
 	public State getState() {
 		switch (this.oldState) {
 		case PROCESS_PAYMENT:
+			return this.state.getState();
 		case RESERVE_ACTIVITY:
+			return this.state.getState();
 		case BOOK_ROOM:
 		case UNDO:
 		case CONFIRMED:
@@ -174,10 +176,10 @@ public class Adventure {
 		this.oldState = state;
 		switch (state) {
 		case PROCESS_PAYMENT:
-			this.state = null;
+			this.state = new ProcessPaymentState();
 			break;
 		case RESERVE_ACTIVITY:
-			this.state = null;
+			this.state = new ReserveActivityState();
 			break;
 		case BOOK_ROOM:
 			this.state = null;

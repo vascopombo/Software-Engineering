@@ -16,7 +16,7 @@ import pt.ulisboa.tecnico.softeng.hotel.dataobjects.RoomBookingData;
 import pt.ulisboa.tecnico.softeng.hotel.exception.HotelException;
 
 public class ReserveActivityState extends AdventureState {
-	private static Logger logger = LoggerFactory.getLogger(CancelledState.class);
+	private static Logger logger = LoggerFactory.getLogger(ReserveActivityState.class);
 	
 	@Override
 	public State getState() {
