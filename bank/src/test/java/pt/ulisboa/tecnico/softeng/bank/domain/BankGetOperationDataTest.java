@@ -10,7 +10,7 @@ import pt.ulisboa.tecnico.softeng.bank.dataobjects.BankOperationData;
 import pt.ulisboa.tecnico.softeng.bank.domain.Operation.Type;
 import pt.ulisboa.tecnico.softeng.bank.exception.BankException;
 
-public class BankGetOperationData {
+public class BankGetOperationDataTest {
 	
 	Bank bank;
 	Client client;
@@ -34,11 +34,11 @@ public class BankGetOperationData {
 		String reference = this.op.getReference();
 		BankOperationData data = Bank.getOperationData(reference);
 
-		Assert.assertEquals("DEPOSIT", data.getType());
+		Assert.assertEquals("DEPOSIT", data.getType().toString());
 		Assert.assertEquals(this.op.getValue(), data.getValue());
 		Assert.assertEquals(this.account.getIBAN(), data.getIban());
 		Assert.assertEquals(this.op.getReference(), data.getReference());
-		Assert.assertEquals(this.op.getTime(), data.getType());
+		Assert.assertEquals(this.op.getTime(), data.getTime());
 	}
 	
 	@Test
@@ -53,11 +53,11 @@ public class BankGetOperationData {
 		data.setValue(20);
 		data.setTime(LocalDateTime.now());
 
-		Assert.assertEquals("WITHDRAW", data.getType());
+		Assert.assertEquals("WITHDRAW", data.getType().toString());
 		Assert.assertEquals(20, data.getValue());
 		Assert.assertEquals("BK0128", data.getIban());
 		Assert.assertEquals("BK01192", data.getReference());
-		Assert.assertEquals(LocalDateTime.now(), data.getType());
+		Assert.assertEquals(LocalDateTime.now(), data.getTime());
 	}
 	
 	
