@@ -17,14 +17,19 @@ public class ActivityProvider {
 
 	private final String name;
 	private final String code;
+	private static String static_name;
+	private static String static_code;
 	private final Set<Activity> activities = new HashSet<>();
+	private static Set<ActivityReservationData> activityData = new HashSet<>();
 
 	public ActivityProvider(String code, String name) {
 		checkArguments(code, name);
 
 		this.code = code;
 		this.name = name;
-
+		
+		this.static_name=name;
+		this.static_code=code;
 		ActivityProvider.providers.add(this);
 	}
 
@@ -59,6 +64,10 @@ public class ActivityProvider {
 	void addActivity(Activity activity) {
 		this.activities.add(activity);
 	}
+	
+	void addActivityReservationData(ActivityReservationData reservationData) {
+		this.activityData.add(reservationData);
+	}
 
 	public List<ActivityOffer> findOffer(LocalDate begin, LocalDate end, int age) {
 		List<ActivityOffer> result = new ArrayList<>();
@@ -80,7 +89,13 @@ public class ActivityProvider {
 	}
 
 	public static String cancelReservation(String activityConfirmation) {
-		// TODO implement
+		for(ActivityReservationData data : ActivityProvider.activityData){
+			if(data.getName().equals(ActivityProvider.static_name) && data.getCode().equals(ActivityProvider.static_code)){
+				data.setCancellation(activityConfirmation);
+				data.setCancellationDate( LocalDate.now());
+				return data.getCancellation();
+			}
+		}
 		throw new ActivityException();
 	}
 
