@@ -161,6 +161,7 @@ public class Adventure {
 		case RESERVE_ACTIVITY:
 			return this.state.getState();
 		case BOOK_ROOM:
+			return this.state.getState();
 		case UNDO:
 		case CONFIRMED:
 			return this.state.getState();
@@ -182,7 +183,7 @@ public class Adventure {
 			this.state = new ReserveActivityState();
 			break;
 		case BOOK_ROOM:
-			this.state = null;
+			this.state = new BookRoomState();
 			break;
 		case UNDO:
 			this.state = null;
@@ -225,20 +226,7 @@ public class Adventure {
 			this.state.process(this);
 			break;			
 		case BOOK_ROOM:
-			try {
-				this.roomConfirmation = HotelInterface.reserveRoom(Room.Type.SINGLE, this.begin, this.end);
-			} catch (HotelException rae) {
-				setState(State.UNDO);
-			} catch (RemoteAccessException rae) {
-				state.incNumOfRemoteErrors();
-				if (state.getNumOfRemoteErrors() == 10){
-					setState(State.UNDO);
-				}
-				return;
-			}
-
-			setState(State.CONFIRMED);
-
+			this.state.process(this);
 			break;
 		case UNDO:
 			if (cancelPayment()) {
