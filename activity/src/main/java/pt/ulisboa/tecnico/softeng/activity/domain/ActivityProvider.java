@@ -90,7 +90,7 @@ public class ActivityProvider {
 
 	public static String cancelReservation(String activityConfirmation) {
 		for(ActivityReservationData data : ActivityProvider.activityData){
-			if(data.getRefernce().equals(activityConfirmation)){
+			if(data.getReference().equals(activityConfirmation)){
 				data.setCancellation("activityCancellation");
 				data.setCancellationDate( LocalDate.now());
 				return data.getCancellation();
