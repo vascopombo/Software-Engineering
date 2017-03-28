@@ -113,5 +113,39 @@ public class ReserveActivityStateProcessMethodTest {
 			
 			Assert.assertEquals(Adventure.State.BOOK_ROOM, this.adventure.getState());
 		}
+	
+	@Test
+	public void FailBookingFirstRemoteException(@Mocked final ActivityInterface activityInterface) {
+
+			new StrictExpectations() {
+				{
+					ActivityInterface.reserveActivity(begin, end, this.anyInt);
+					this.result = new RemoteAccessException();
+				}
+			};
+
+			this.adventure.process();
+
+			Assert.assertEquals(Adventure.State.RESERVE_ACTIVITY, this.adventure.getState());
+		}
+	
+	@Test
+	public void FailBookingRemoteException(@Mocked final ActivityInterface activityInterface) {
+
+			new StrictExpectations() {
+				{
+					ActivityInterface.reserveActivity(begin, end, this.anyInt);
+					this.result = new RemoteAccessException();
+					this.times = 3;
+				}
+			};
+
+			this.adventure.process();
+			this.adventure.process();
+			this.adventure.process();
+			
+
+			Assert.assertEquals(Adventure.State.RESERVE_ACTIVITY, this.adventure.getState());
+		}
 
 	}
