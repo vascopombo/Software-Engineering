@@ -24,9 +24,9 @@ public class UndoState extends AdventureState {
 	public void process(Adventure adventure) {
 		logger.debug("process");
 		
-		String reference1;
-		String reference2;
-		String reference3;
+		String reference1 = null;
+		String reference2 = null;
+		String reference3 = null;
 	
 	if (adventure.cancelPayment()) {
 		try {
@@ -34,6 +34,7 @@ public class UndoState extends AdventureState {
 		} catch (HotelException | RemoteAccessException ex) {
 			return;
 		}
+		adventure.setPaymentCancellation(reference1);
 	}
 
 	if (adventure.cancelActivity()) {
@@ -42,6 +43,7 @@ public class UndoState extends AdventureState {
 		} catch (HotelException | RemoteAccessException ex) {
 			return;
 		}
+		adventure.setActivityCancellation(reference2);
 	}
 
 	if (adventure.cancelRoom()) {
@@ -50,6 +52,7 @@ public class UndoState extends AdventureState {
 		} catch (HotelException | RemoteAccessException ex) {
 			return;
 		}
+		adventure.setRoomCancellation(reference3);
 	}
 
 	if (!adventure.cancelPayment() && !adventure.cancelActivity() && !adventure.cancelRoom()) {
