@@ -97,7 +97,11 @@ public class ActivityProvider {
 	}
 
 	public static ActivityReservationData getActivityReservationData(String reference) {
-		// TODO implement
+		for(ActivityReservationData data : ActivityProvider.activityData){
+			if(data.getReference().equals(reference)){
+				return data;
+			}
+		}
 		throw new ActivityException();
 	}
 
