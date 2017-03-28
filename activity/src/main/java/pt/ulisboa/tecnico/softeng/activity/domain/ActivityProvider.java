@@ -17,8 +17,7 @@ public class ActivityProvider {
 
 	private final String name;
 	private final String code;
-	private static String static_name;
-	private static String static_code;
+	
 	private final Set<Activity> activities = new HashSet<>();
 	private static Set<ActivityReservationData> activityData = new HashSet<>();
 
@@ -28,8 +27,6 @@ public class ActivityProvider {
 		this.code = code;
 		this.name = name;
 		
-		this.static_name=name;
-		this.static_code=code;
 		ActivityProvider.providers.add(this);
 	}
 
