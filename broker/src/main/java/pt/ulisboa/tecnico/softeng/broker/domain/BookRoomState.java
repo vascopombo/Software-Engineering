@@ -25,11 +25,12 @@ public class BookRoomState extends AdventureState {
 	public void process(Adventure adventure) {
 		logger.debug("process");
 
-			String reference = null;
+			String reference;
 			try {
 				reference = HotelInterface.reserveRoom(Room.Type.SINGLE, adventure.getBegin(), adventure.getEnd());
 			}  catch (HotelException rae) {
 				adventure.setState(State.UNDO);
+				return;
 			} catch (RemoteAccessException rae) {
 				incNumOfRemoteErrors();
 				if (getNumOfRemoteErrors() == 10){
