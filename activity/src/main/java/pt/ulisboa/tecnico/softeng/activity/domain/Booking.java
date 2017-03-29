@@ -29,7 +29,8 @@ public class Booking {
 	}
 	
 	public ActivityReservationData newActivityReservationData( ActivityProvider provider, ActivityOffer offer){
-		ActivityReservationData data = new ActivityReservationData(reference, provider.getName(), provider.getCode(), 
+		ActivityReservationData data = new ActivityReservationData();
+		data.constructorActivityReservationData(reference, provider.getName(), provider.getCode(), 
 				offer.getBegin(), offer.getEnd());
 	
 		return data;

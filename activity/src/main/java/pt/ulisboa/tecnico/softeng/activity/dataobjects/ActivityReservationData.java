@@ -11,7 +11,7 @@ public class ActivityReservationData {
 	private LocalDate end;
 	private LocalDate cancellationDate;
 
-	public ActivityReservationData (String ref, String nome, String codigo, LocalDate b, LocalDate e){
+	public void constructorActivityReservationData (String ref, String nome, String codigo, LocalDate b, LocalDate e){
 		reference = ref;
 		name = nome;
 		code = codigo;
