@@ -136,10 +136,11 @@ public class ReserveActivityStateProcessMethodTest {
 				{
 					ActivityInterface.reserveActivity(begin, end, this.anyInt);
 					this.result = new RemoteAccessException();
-					this.times = 3;
+					this.times = 4;
 				}
 			};
 
+			this.adventure.process();
 			this.adventure.process();
 			this.adventure.process();
 			this.adventure.process();
@@ -147,5 +148,5 @@ public class ReserveActivityStateProcessMethodTest {
 
 			Assert.assertEquals(Adventure.State.RESERVE_ACTIVITY, this.adventure.getState());
 		}
-
+	
 	}
