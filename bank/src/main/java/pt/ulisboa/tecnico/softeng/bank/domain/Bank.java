@@ -7,6 +7,7 @@ import java.util.Set;
 
 import pt.ulisboa.tecnico.softeng.bank.dataobjects.BankOperationData;
 import pt.ulisboa.tecnico.softeng.bank.exception.BankException;
+import pt.ulisboa.tecnico.softeng.bank.domain.Operation.Type;
 
 public class Bank {
 	public static Set<Bank> banks = new HashSet<>();
@@ -104,8 +105,24 @@ public class Bank {
 	}
 
 	public static String cancelPayment(String reference) {
-		// TODO implement
-		throw new BankException();
+		if(reference == null || reference.trim().length() == 0){
+			throw new BankException();
+		}
+		Operation operation = null;
+		
+		for (Bank bank : Bank.banks) {
+			if (bank.getOperation(reference) != null) {
+				operation = bank.getOperation(reference);
+			}
+		}
+		
+		if (operation == null){
+			throw new BankException();
+		}
+
+		Operation newOperation = new Operation(Type.DEPOSIT, operation.getAccount(), operation.getValue());
+
+		return newOperation.getReference();
 	}
 
 	public static BankOperationData getOperationData(String reference) {
