@@ -29,12 +29,9 @@ public class Booking {
 	}
 	
 	public ActivityReservationData newActivityReservationData( ActivityProvider provider, ActivityOffer offer){
-		ActivityReservationData data = new ActivityReservationData();
-		data.setReference(reference);
-		data.setName(provider.getName());
-		data.setCode(provider.getCode());
-		data.setBegin(offer.getBegin());
-		data.setEnd(offer.getEnd());
+		ActivityReservationData data = new ActivityReservationData(reference, provider.getName(), provider.getCode(), 
+				offer.getBegin(), offer.getEnd());
+	
 		return data;
 	}
 }
