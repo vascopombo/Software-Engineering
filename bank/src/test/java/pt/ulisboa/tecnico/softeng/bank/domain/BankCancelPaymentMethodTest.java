@@ -30,7 +30,7 @@ public class BankCancelPaymentMethodTest {
 		
 
 		String reference = this.op.getReference();
-		String cancel = this.bank.cancelPayment(reference);
+		String cancel = Bank.cancelPayment(reference);
 		Operation operation = this.bank.getOperation(cancel);
 
 		Assert.assertEquals("DEPOSIT", operation.getType().toString());
