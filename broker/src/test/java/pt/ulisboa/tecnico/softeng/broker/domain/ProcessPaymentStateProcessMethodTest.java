@@ -82,4 +82,21 @@ public class ProcessPaymentStateProcessMethodTest {
 			
 			Assert.assertEquals(Adventure.State.CANCELLED, this.adventure.getState());
 		}
+	
+	@Test
+	public void ProcessPaymentTwice(@Mocked final BankInterface bankInterface) {
+
+			new StrictExpectations() {
+				{
+					BankInterface.processPayment(IBAN, amount);
+					this.result = new RemoteAccessException();
+					this.times = 2;	
+				}
+			};
+
+			this.adventure.process();
+			this.adventure.process();
+			
+			Assert.assertEquals(Adventure.State.PROCESS_PAYMENT, this.adventure.getState());
+		}
 }
