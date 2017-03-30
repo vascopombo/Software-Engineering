@@ -3,6 +3,8 @@ package pt.ulisboa.tecnico.softeng.broker.domain;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import pt.ulisboa.tecnico.softeng.activity.exception.ActivityException;
+import pt.ulisboa.tecnico.softeng.bank.exception.BankException;
 import pt.ulisboa.tecnico.softeng.broker.domain.Adventure.State;
 import pt.ulisboa.tecnico.softeng.broker.exception.RemoteAccessException;
 import pt.ulisboa.tecnico.softeng.broker.interfaces.ActivityInterface;
@@ -31,7 +33,7 @@ public class UndoState extends AdventureState {
 	if (adventure.cancelPayment()) {
 		try {
 			reference1 = BankInterface.cancelPayment(adventure.getPaymentConfirmation());
-		} catch (HotelException | RemoteAccessException ex) {
+		} catch (BankException | RemoteAccessException ex) {
 			return;
 		}
 		adventure.setPaymentCancellation(reference1);
@@ -40,7 +42,7 @@ public class UndoState extends AdventureState {
 	if (adventure.cancelActivity()) {
 		try {
 			reference2 = ActivityInterface.cancelReservation(adventure.getActivityConfirmation());
-		} catch (HotelException | RemoteAccessException ex) {
+		} catch (ActivityException | RemoteAccessException ex) {
 			return;
 		}
 		adventure.setActivityCancellation(reference2);
