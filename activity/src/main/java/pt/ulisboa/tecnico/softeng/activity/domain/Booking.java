@@ -29,10 +29,15 @@ public class Booking {
 	}
 	
 	public ActivityReservationData newActivityReservationData( ActivityProvider provider, ActivityOffer offer){
-		ActivityReservationData data = new ActivityReservationData();
-		data.constructorActivityReservationData(reference, provider.getName(), provider.getCode(), 
-				offer.getBegin(), offer.getEnd());
+		if (provider == null || offer == null) {
+			throw new ActivityException();
+		}
+		else{
+			ActivityReservationData data = new ActivityReservationData();
+			data.constructorActivityReservationData(reference, provider.getName(), provider.getCode(), 
+					offer.getBegin(), offer.getEnd());
 	
-		return data;
+			return data;
+		}
 	}
 }
