@@ -34,7 +34,21 @@ public class GetActivityReservationDataTest {
 	public void success() {
 		String reference = this.booking.getReference();
 		ActivityReservationData data = ActivityProvider.getActivityReservationData(reference);
+
+		Assert.assertEquals(this.booking.getReference(), data.getReference());
+		Assert.assertEquals(this.provider.getName(), data.getName());
+		Assert.assertEquals(this.provider.getCode(), data.getCode());
+		Assert.assertEquals(this.offer.getEnd(), data.getEnd());
+		Assert.assertEquals(this.offer.getBegin(), data.getBegin());	
+	}
+	
+	@Test
+	public void success2() {
+		String reference = this.booking.getReference();
+		String cancel = ActivityProvider.cancelReservation(reference);
+		ActivityReservationData data = ActivityProvider.getActivityReservationData(reference);
 		
+		Assert.assertEquals(cancel , data.getCancellation());
 		Assert.assertEquals(this.booking.getReference(), data.getReference());
 		Assert.assertEquals(this.provider.getName(), data.getName());
 		Assert.assertEquals(this.provider.getCode(), data.getCode());
