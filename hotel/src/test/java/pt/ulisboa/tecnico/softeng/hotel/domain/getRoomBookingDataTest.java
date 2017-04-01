@@ -1,7 +1,6 @@
 package pt.ulisboa.tecnico.softeng.hotel.domain;
 
 import org.joda.time.LocalDate;
-import org.joda.time.LocalDateTime;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -38,6 +37,23 @@ public class getRoomBookingDataTest {
 	
 	@Test
 	public void success() {
+		String reference = this.booking.getReference();
+
+		RoomBookingData data = Hotel.getRoomBookingData(reference);
+		
+		Assert.assertEquals(reference, data.getReference());
+		Assert.assertEquals(null, data.getCancellation());
+		Assert.assertEquals(this.hotel.getName(), data.getHotelName());
+		Assert.assertEquals(this.hotel.getCode(), data.getHotelCode());
+		Assert.assertEquals(this.room.getNumber(), data.getRoomNumber());
+		Assert.assertEquals(this.room.getType().toString(), data.getRoomType());
+		Assert.assertEquals(this.booking.getArrival(), data.getArrival());
+		Assert.assertEquals(this.booking.getDeparture(), data.getDeparture());
+		Assert.assertEquals(null, data.getCancellationDate());	
+	}
+	
+	@Test
+	public void anotherSuccess() {
 		String reference = this.booking.getReference();
 
 		RoomBookingData data = Hotel.getRoomBookingData(reference);

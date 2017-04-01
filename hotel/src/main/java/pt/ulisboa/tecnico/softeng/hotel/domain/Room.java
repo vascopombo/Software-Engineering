@@ -83,8 +83,5 @@ public class Room {
 		return booking;
 	}
 	
-	public Set<Booking> getBookings(){
-		return bookings;
-	}
 
 }
