@@ -17,6 +17,7 @@ public class Hotel {
 	private final String code;
 	private final String name;
 	private final Set<Room> rooms = new HashSet<>();
+	private static Set<RoomBookingData> roomBookingData = new HashSet<>();
 
 	public Hotel(String code, String name) {
 		checkArguments(code, name);
@@ -94,10 +95,19 @@ public class Hotel {
 		throw new HotelException();
 	}
 	
-
+	public void addRoomBookingData(Hotel hotel, Room room, Booking booking){
+		RoomBookingData data = new RoomBookingData();
+		data.construct(booking.getReference(), hotel.getName(), hotel.getCode(), room.getNumber(), room.getType().toString(), booking.getArrival(), booking.getDeparture());
+		roomBookingData.add(data);
+	}
 
 	public static String cancelBooking(String roomConfirmation) {
-		// TODO implement
+		RoomBookingData data = Hotel.getRoomBookingData(roomConfirmation);
+		if(data.getCancellation() == null && data.getCancellationDate() == null){
+			data.setCancellationDate(LocalDate.now());
+			data.setCancellation("Cancelation: " + data.getReference());
+			return data.getCancellation();
+		}
 		throw new HotelException();
 	}
 	

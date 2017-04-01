@@ -1,6 +1,9 @@
 package pt.ulisboa.tecnico.softeng.hotel.dataobjects;
 
 import org.joda.time.LocalDate;
+import pt.ulisboa.tecnico.softeng.hotel.domain.Room;
+import pt.ulisboa.tecnico.softeng.hotel.domain.Hotel;
+import pt.ulisboa.tecnico.softeng.hotel.domain.Booking;
 
 public class RoomBookingData {
 	private String reference;
@@ -12,6 +15,18 @@ public class RoomBookingData {
 	private LocalDate arrival;
 	private LocalDate departure;
 	private LocalDate cancellationDate;
+
+	public void construct(String ref, String hName, String hCode, String rNum, String rType, LocalDate a, LocalDate d){
+		this.reference = ref;
+		this.cancellation = null;
+		this.hotelName = hName;
+		this.hotelCode = hCode;
+		this.roomNumber = rNum;
+		this.roomType = rType;
+		this.arrival = a;
+		this.departure = d;
+		this.cancellationDate = null;
+	}
 
 	public String getReference() {
 		return this.reference;

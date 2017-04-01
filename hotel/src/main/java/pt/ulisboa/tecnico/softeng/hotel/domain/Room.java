@@ -78,6 +78,7 @@ public class Room {
 
 		Booking booking = new Booking(this.hotel, arrival, departure);
 		this.bookings.add(booking);
+		this.hotel.addRoomBookingData(this.hotel, this, booking);
 
 		return booking;
 	}
