@@ -37,11 +37,9 @@ public class getRoomBookingDataTest {
 	
 	@Test
 	public void success() {
-		String reference = this.booking.getReference();
-
-		RoomBookingData data = Hotel.getRoomBookingData(reference);
+		RoomBookingData data = Hotel.getRoomBookingData(this.booking.getReference());
 		
-		Assert.assertEquals(reference, data.getReference());
+		Assert.assertEquals(this.booking.getReference(), data.getReference());
 		Assert.assertEquals(null, data.getCancellation());
 		Assert.assertEquals(this.hotel.getName(), data.getHotelName());
 		Assert.assertEquals(this.hotel.getCode(), data.getHotelCode());
@@ -50,53 +48,6 @@ public class getRoomBookingDataTest {
 		Assert.assertEquals(this.booking.getArrival(), data.getArrival());
 		Assert.assertEquals(this.booking.getDeparture(), data.getDeparture());
 		Assert.assertEquals(null, data.getCancellationDate());	
-	}
-	
-	@Test
-	public void anotherSuccess() {
-		String reference = this.booking.getReference();
-
-		RoomBookingData data = Hotel.getRoomBookingData(reference);
-		
-		Assert.assertEquals(reference, data.getReference());
-		Assert.assertEquals(null, data.getCancellation());
-		Assert.assertEquals(this.hotel.getName(), data.getHotelName());
-		Assert.assertEquals(this.hotel.getCode(), data.getHotelCode());
-		Assert.assertEquals(this.room.getNumber(), data.getRoomNumber());
-		Assert.assertEquals(this.room.getType().toString(), data.getRoomType());
-		Assert.assertEquals(this.booking.getArrival(), data.getArrival());
-		Assert.assertEquals(this.booking.getDeparture(), data.getDeparture());
-		Assert.assertEquals(null, data.getCancellationDate());	
-	}
-		
-	
-	@Test
-	public void setTest() {
-		String reference = this.booking.getReference();
-		RoomBookingData data = Hotel.getRoomBookingData(reference);
-		
-		LocalDate arrival1 = new LocalDate(2016, 12, 10);
-		LocalDate departure1 = new LocalDate(2016, 12, 15);
-		
-		data.setReference("XPTO1231");
-		data.setCancellation(null);
-		data.setHotelName("Lisboa");
-		data.setHotelCode("XPTO123");
-		data.setRoomNumber("01");
-		data.setRoomType("DOUBLE");
-		data.setArrival(arrival1);
-		data.setDeparture(departure1);
-		data.setCancellationDate(null);
-
-		Assert.assertEquals("XPTO1231", data.getReference());
-		Assert.assertEquals(null, data.getCancellation());
-		Assert.assertEquals("Lisboa", data.getHotelName());
-		Assert.assertEquals("XPTO123", data.getHotelCode());
-		Assert.assertEquals("01", data.getRoomNumber());
-		Assert.assertEquals("DOUBLE", data.getRoomType().toString());
-		Assert.assertEquals(arrival1, data.getArrival());
-		Assert.assertEquals(departure1, data.getDeparture());
-		Assert.assertEquals(null, data.getCancellationDate());
 	}
 	
 	
