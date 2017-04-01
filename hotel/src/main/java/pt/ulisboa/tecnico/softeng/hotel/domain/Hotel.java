@@ -142,11 +142,38 @@ public class Hotel {
 	}
 
 	public static Set<String> bulkBooking(int number, LocalDate arrival, LocalDate departure) {
-		// TODO: verify consistency of arguments, return the
-		// references for 'number' new bookings, it does not matter if they are
-		// single of double. If there aren't enough rooms available it throws a
-		// hotel exception
-		throw new HotelException();
+		if(number<=0 || arrival == null || departure == null ||
+				departure.isBefore(arrival)||departure.isEqual(arrival)){
+			throw new HotelException();
+		}
+		int i=0;
+		String reserva = null;
+		Set<String> referencias = new HashSet<String>();
+		
+		while(i<number){
+			try{
+				reserva = reserveRoom(Room.Type.SINGLE, arrival, departure);
+			} catch(HotelException rae){
+				break;
+			}
+			referencias.add(reserva);
+			i++;
+		}
+		while(i<number){
+			try{
+				reserva = reserveRoom(Room.Type.DOUBLE, arrival, departure);
+			} catch(HotelException rae){
+				break;
+			}
+			referencias.add(reserva);
+			i++;
+		}
+		if(i<number){
+			for(String s : referencias){
+				cancelBooking(s);
+			}
+			throw new HotelException();
+		}
+		return referencias;
 	}
-
 }

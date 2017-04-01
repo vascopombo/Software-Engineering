@@ -44,18 +44,18 @@ public class ConfirmedState extends AdventureState {
 				}
 				return;
 			}
-			resetNumOfRemoteErrors();
+			//resetNumOfRemoteErrors();
 			System.out.println("Payment confirmation: " + operation.getReference());
 			System.out.println("Type: " + operation.getType());
 			System.out.println("IBAN: " + operation.getIban());
 			System.out.println("Value: " + operation.getValue());
-			System.out.println("Time: " + operation.getTime());			
+			System.out.println("Time: " + operation.getTime());
 		}
 
 		if (adventure.getActivityConfirmation() != null) {
-			ActivityReservationData data;
+			ActivityReservationData reservation;
 			try {
-				data = ActivityInterface.getActivityReservationData(adventure.getActivityConfirmation());
+				reservation = ActivityInterface.getActivityReservationData(adventure.getActivityConfirmation());
 			} catch (ActivityException ae) {
 				adventure.setState(State.UNDO);
 				return;
@@ -66,18 +66,18 @@ public class ConfirmedState extends AdventureState {
 				}
 				return;
 			}
-			resetNumOfRemoteErrors();
-			System.out.println("Activity confirmation: " + data.getReference());
-			System.out.println("Begin: " + data.getBegin());
-			System.out.println("End: " + data.getEnd());
-			System.out.println("Activity Name: " + data.getName());
-			System.out.println("Activity Code: " + data.getCode());
+			//resetNumOfRemoteErrors();
+			System.out.println("Activity confirmation: " + reservation.getReference());
+			System.out.println("Begin: " + reservation.getBegin());
+			System.out.println("End: " + reservation.getEnd());
+			System.out.println("Activity Name: " + reservation.getName());
+			System.out.println("Activity Code: " + reservation.getCode());
 		}
 
 		if (adventure.getRoomConfirmation() != null) {
-			RoomBookingData data;
+			RoomBookingData booking;
 			try {
-				data = HotelInterface.getRoomBookingData(adventure.getRoomConfirmation());
+				booking = HotelInterface.getRoomBookingData(adventure.getRoomConfirmation());
 			} catch (HotelException he) {
 				adventure.setState(State.UNDO);
 				return;
@@ -89,13 +89,13 @@ public class ConfirmedState extends AdventureState {
 				return;
 			}
 			resetNumOfRemoteErrors();
-			System.out.println("Room confirmation: " + data.getReference());
-			System.out.println("Arrival: " + data.getArrival());
-			System.out.println("Departure: " + data.getDeparture());
-			System.out.println("Hotel name: " + data.getHotelName());
-			System.out.println("Hotel code: " + data.getHotelCode());
-			System.out.println("Room number: " + data.getRoomNumber());
-			System.out.println("Room type: " + data.getRoomType());			
+			System.out.println("Room confirmation: " + booking.getReference());
+			System.out.println("Arrival: " + booking.getArrival());
+			System.out.println("Departure: " + booking.getDeparture());
+			System.out.println("Hotel name: " + booking.getHotelName());
+			System.out.println("Hotel code: " + booking.getHotelCode());
+			System.out.println("Room number: " + booking.getRoomNumber());
+			System.out.println("Room type: " + booking.getRoomType());			
 		}
 	}
 }
