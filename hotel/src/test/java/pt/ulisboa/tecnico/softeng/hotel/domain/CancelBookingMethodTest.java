@@ -9,6 +9,7 @@ import org.joda.time.LocalDate;
 import pt.ulisboa.tecnico.softeng.hotel.domain.Room;
 import pt.ulisboa.tecnico.softeng.hotel.domain.Room.Type;
 import pt.ulisboa.tecnico.softeng.hotel.domain.Hotel;
+import pt.ulisboa.tecnico.softeng.hotel.dataobjects.RoomBookingData;
 
 import pt.ulisboa.tecnico.softeng.hotel.exception.HotelException;
 
@@ -35,7 +36,13 @@ public class CancelBookingMethodTest{
 
 	@Test
 	public void success(){
+		RoomBookingData data = hotel.getRoomBookingData(roomConfirmation);
+		Assert.assertNull(data.getCancellation());
+		Assert.assertNull(data.getCancellationDate());
 		String result = hotel.cancelBooking(roomConfirmation);
+		data = hotel.getRoomBookingData(roomConfirmation);
+		Assert.assertNotNull(data.getCancellation());
+		Assert.assertNotNull(data.getCancellationDate());
 		Assert.assertNotNull(result);
 	}
 
