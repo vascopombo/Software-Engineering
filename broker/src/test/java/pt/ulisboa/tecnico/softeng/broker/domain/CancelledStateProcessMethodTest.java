@@ -11,6 +11,7 @@ import mockit.Injectable;
 import mockit.Mocked;
 import mockit.Verifications;
 import mockit.integration.junit4.JMockit;
+import pt.ulisboa.tecnico.softeng.activity.exception.ActivityException;
 import pt.ulisboa.tecnico.softeng.bank.dataobjects.BankOperationData;
 import pt.ulisboa.tecnico.softeng.bank.exception.BankException;
 import pt.ulisboa.tecnico.softeng.broker.domain.Adventure.State;
@@ -172,6 +173,30 @@ public class CancelledStateProcessMethodTest {
 				ActivityInterface.getActivityReservationData(ACTIVITY_CANCELLATION);
 			}
 		};
+		
+		this.adventure.process();
+
+		Assert.assertEquals(Adventure.State.CANCELLED, this.adventure.getState());
+	}
+		
+		@Test
+		public void cancelledActivityException(@Mocked final BankInterface bankInterface,
+				@Mocked final ActivityInterface activityInterface) {
+			this.adventure.setPaymentConfirmation(PAYMENT_CONFIRMATION);
+			this.adventure.setPaymentCancellation(PAYMENT_CANCELLATION);
+			this.adventure.setActivityConfirmation(ACTIVITY_CONFIRMATION);
+			this.adventure.setActivityCancellation(ACTIVITY_CANCELLATION);
+
+			new StrictExpectations() {
+				{
+					BankInterface.getOperationData(PAYMENT_CONFIRMATION);
+					
+					BankInterface.getOperationData(PAYMENT_CANCELLATION);
+
+					ActivityInterface.getActivityReservationData(ACTIVITY_CANCELLATION);
+					this.result = new ActivityException();
+				}
+			};
 
 		this.adventure.process();
 
