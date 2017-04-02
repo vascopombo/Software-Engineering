@@ -578,4 +578,51 @@ package pt.ulisboa.tecnico.softeng.broker.domain;
  		
  		Assert.assertEquals(Adventure.State.CANCELLED, this.adventure.getState());
  	}
+
+ 	@Test
+ 	public void SequenceConfirmedOne(@Mocked final BankInterface bankInterface,
+ 		@Mocked final ActivityInterface activityInterface) {
+ 		this.adventure = new Adventure(this.broker, this.begin, this.begin, 20, IBAN, 300);
+ 		this.adventure.setPaymentConfirmation(PAYMENT_CONFIRMATION);
+ 		this.adventure.setActivityConfirmation(ACTIVITY_CONFIRMATION);
+ 		new Expectations() {
+ 			{
+ 				BankInterface.processPayment(IBAN, AMOUNT);
+ 				this.result = adventure.getPaymentConfirmation();
+ 				ActivityInterface.reserveActivity(begin, begin, 20);
+ 				this.result = adventure.getActivityConfirmation();
+ 			}
+ 		};
+ 		this.adventure.process();
+ 		this.adventure.process();
+ 
+ 		Assert.assertEquals(Adventure.State.CONFIRMED, adventure.getState());
+	}
+
+	@Test
+ 	public void SequenceConfirmedTwo(@Mocked final BankInterface bankInterface,
+ 		@Mocked final ActivityInterface activityInterface, @Mocked final HotelInterface hotelInterface) {
+ 		this.adventure.setPaymentConfirmation(PAYMENT_CONFIRMATION);
+ 		this.adventure.setActivityConfirmation(ACTIVITY_CONFIRMATION);
+ 		this.adventure.setRoomConfirmation(ROOM_CONFIRMATION);
+
+ 		new Expectations() {
+ 			{
+ 				BankInterface.processPayment(IBAN,AMOUNT);
+ 				this.result = adventure.getPaymentConfirmation();
+ 
+ 				ActivityInterface.reserveActivity(begin, end, 20);
+ 				this.result = adventure.getActivityConfirmation();
+
+ 				HotelInterface.reserveRoom(Room.Type.SINGLE, begin, end);
+ 				this.result = adventure.getRoomConfirmation();
+ 			}
+ 		};
+
+ 		for(int i = 0; i<3; i++){
+ 			this.adventure.process();
+ 		}
+
+ 		Assert.assertEquals(Adventure.State.CONFIRMED, this.adventure.getState());
+ 	}
  }
