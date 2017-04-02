@@ -236,7 +236,7 @@ public class UndoStateProcessMethodTest {
 	
 	
 	@Test
-	public void activityNotNull(@Mocked final BankInterface bankInterface, @Mocked final ActivityInterface activityInterface, @Mocked final HotelInterface hotelInterface) {
+	public void allNull(@Mocked final BankInterface bankInterface, @Mocked final ActivityInterface activityInterface, @Mocked final HotelInterface hotelInterface) {
 		this.adventure.setPaymentConfirmation(PAYMENT_CONFIRMATION);
 		this.adventure.setActivityConfirmation(ACTIVITY_CONFIRMATION);
 		this.adventure.setRoomConfirmation(ROOM_CONFIRMATION);
@@ -247,7 +247,7 @@ public class UndoStateProcessMethodTest {
 				this.result = null;
 				
 				ActivityInterface.cancelReservation(ACTIVITY_CONFIRMATION);
-				this.result = ACTIVITY_CANCELLATION;
+				this.result = null;
 				
 				HotelInterface.cancelBooking(ROOM_CONFIRMATION);
 				this.result = null;
@@ -260,7 +260,7 @@ public class UndoStateProcessMethodTest {
 	}
 	
 	@Test
-	public void hotelNotNull(@Mocked final BankInterface bankInterface, @Mocked final ActivityInterface activityInterface, @Mocked final HotelInterface hotelInterface) {
+	public void oneNull(@Mocked final BankInterface bankInterface, @Mocked final ActivityInterface activityInterface, @Mocked final HotelInterface hotelInterface) {
 		this.adventure.setPaymentConfirmation(PAYMENT_CONFIRMATION);
 		this.adventure.setActivityConfirmation(ACTIVITY_CONFIRMATION);
 		this.adventure.setRoomConfirmation(ROOM_CONFIRMATION);
@@ -268,13 +268,13 @@ public class UndoStateProcessMethodTest {
 		new Expectations() {
 			{
 				BankInterface.cancelPayment(PAYMENT_CONFIRMATION);
-				this.result = null;
+				this.result = PAYMENT_CANCELLATION;
 				
 				ActivityInterface.cancelReservation(ACTIVITY_CONFIRMATION);
-				this.result = null;
+				this.result = ACTIVITY_CANCELLATION;
 				
 				HotelInterface.cancelBooking(ROOM_CONFIRMATION);
-				this.result = ROOM_CANCELLATION;
+				this.result = null;
 			}
 		};
 
