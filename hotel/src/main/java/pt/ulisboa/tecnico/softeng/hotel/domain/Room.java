@@ -83,5 +83,12 @@ public class Room {
 		return booking;
 	}
 	
+	public void deleteBooking(String reference){
+		for(Booking booking : this.bookings){
+			if(booking.getReference().equals(reference)){
+				bookings.remove(booking);
+			}
+		}
+	}
 
 }

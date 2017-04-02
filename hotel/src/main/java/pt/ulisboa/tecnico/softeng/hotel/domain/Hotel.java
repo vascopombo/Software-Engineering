@@ -103,6 +103,15 @@ public class Hotel {
 	public static String cancelBooking(String roomConfirmation) {
 		RoomBookingData data = Hotel.getRoomBookingData(roomConfirmation);
 		if(data.getCancellation() == null && data.getCancellationDate() == null){
+			for(Hotel hotel : Hotel.hotels){
+				if(hotel.getCode().equals(data.getHotelCode())){
+					for(Room room : hotel.rooms){
+						if(room.getNumber().equals(data.getRoomNumber())){
+							room.deleteBooking(data.getReference());
+						}
+					}
+				}
+			}	
 			data.setCancellationDate(LocalDate.now());
 			data.setCancellation("Cancelation: " + data.getReference());
 			return data.getCancellation();
