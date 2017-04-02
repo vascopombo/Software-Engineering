@@ -36,7 +36,7 @@ public class Booking {
 	LocalDate getArrival() {
 		return this.arrival;
 	}
-
+	
 	LocalDate getDeparture() {
 		return this.departure;
 	}
