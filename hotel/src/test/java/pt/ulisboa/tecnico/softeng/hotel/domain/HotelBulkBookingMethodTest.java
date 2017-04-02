@@ -111,8 +111,7 @@ public class HotelBulkBookingMethodTest {
 		Assert.assertFalse(room5.isFree(Type.SINGLE,arrival,departure));
 	}
 	
-	//TODO : DESCOMENTAR DEPOIS DE CANCELBOOKING ESTAR FEITO
-	/*@Test
+	@Test
 	public void checkReservesGotCancelled() {
 		
 		room1.reserve(Type.DOUBLE, arrival, departure);
@@ -128,7 +127,7 @@ public class HotelBulkBookingMethodTest {
 		Assert.assertTrue(room3.isFree(Type.SINGLE,arrival,departure));
 		Assert.assertTrue(room4.isFree(Type.DOUBLE,arrival,departure));
 		Assert.assertTrue(room5.isFree(Type.SINGLE,arrival,departure));
-	}*/
+	}
 	
 	
 	@Test(expected = HotelException.class)
