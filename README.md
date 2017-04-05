@@ -7,7 +7,7 @@ To run tests execute: mvn clean install
 |76508       |                         |                         |                |Activity    |
 |81933       |                         |                         |                |Activity    |
 |82011       |                         |                         |                |Activity    |
-|76446       |                         |                         |                |Bank        |
+|76446       |Diogo Carlos             |diogo.carlos@ist.utl.pt  |DigasMC         |Bank        |
 |78029       |                         |                         |                |Bank        |
 |78045       |                         |                         |                |Bank        |
 |70466       |Hugo Almeida             |hugomiguelfa@gmail.com   |almeidaHugo     |Hotel/Broker|
