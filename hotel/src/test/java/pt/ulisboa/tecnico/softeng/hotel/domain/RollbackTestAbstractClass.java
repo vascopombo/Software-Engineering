@@ -24,6 +24,9 @@ public abstract class RollbackTestAbstractClass {
 
 	@After
 	public void tearDown() {
+		for (Hotel hotel : FenixFramework.getDomainRoot().getHotelSet()){
+			hotel.delete();
+		}
 		try {
 			FenixFramework.getTransactionManager().rollback();
 		} catch (IllegalStateException | SecurityException | SystemException e) {

@@ -15,17 +15,15 @@ public class Hotel extends Hotel_Base{
 
 	static final int CODE_SIZE = 7;
 
-	private final String code;
-	private final String name;
 	private final Set<Room> rooms = new HashSet<>();
 
 	public Hotel(String code, String name) {
 		checkArguments(code, name);
 		
 		setRoot(FenixFramework.getDomainRoot());
-
-		this.code = code;
-		this.name = name;
+		
+		setCode(code);
+		setName(name);
 		
 	}
 	
@@ -74,13 +72,6 @@ public class Hotel extends Hotel_Base{
 		return availableRooms;
 	}
 
-	public String getCode() {
-		return this.code;
-	}
-
-	public String getName() {
-		return this.name;
-	}
 	
 	public static Hotel getHotelByCode(String code) {
 		for (Hotel hotel : FenixFramework.getDomainRoot().getHotelSet()) {
