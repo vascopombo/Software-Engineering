@@ -25,7 +25,10 @@ public abstract class RollbackTestAbstractClass {
 
 	@After
 	public void tearDown() {
-		Hotel.hotels.clear();
+		
+		for(Hotel hotel : FenixFramework.getDomainRoot().getHotelSet()){
+			hotel.delete();
+		}
 		ActivityProvider.providers.clear();
 
 		try {
