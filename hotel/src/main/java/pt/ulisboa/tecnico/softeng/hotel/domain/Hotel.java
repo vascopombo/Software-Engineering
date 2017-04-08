@@ -31,6 +31,12 @@ public class Hotel extends Hotel_Base{
 		Hotel.hotels.add(this);
 		
 	}
+	
+	public void delete() {
+		setRoot(null);
+
+		deleteDomainObject();
+	}
 
 	private void checkArguments(String code, String name) {
 		if (code == null || name == null || code.trim().length() == 0 || name.trim().length() == 0) {
@@ -41,7 +47,7 @@ public class Hotel extends Hotel_Base{
 			throw new HotelException();
 		}
 
-		for (Hotel hotel : hotels) {
+		for (Hotel hotel : FenixFramework.getDomainRoot().getHotelSet()) {
 			if (hotel.getCode().equals(code)) {
 				throw new HotelException();
 			}
@@ -77,6 +83,15 @@ public class Hotel extends Hotel_Base{
 
 	public String getName() {
 		return this.name;
+	}
+	
+	public static Hotel getHotelByCode(String code) {
+		for (Hotel hotel : FenixFramework.getDomainRoot().getHotelSet()) {
+			if (hotel.getCode().equals(code)) {
+				return hotel;
+			}
+		}
+		return null;
 	}
 
 	void addRoom(Room room) {
