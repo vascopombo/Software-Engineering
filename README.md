@@ -4,7 +4,7 @@ To run tests execute: mvn clean install
 
 |   Number   |          Name           |            Email        |   Name GitHUb  | Module(s)  |
 | ---------- | ----------------------- | ----------------------- | ---------------| ---------  |
-|76508       |                         |                         |                |Activity    |
+|76508       |Bruno Soalheira          |bruno.1994.0@gmail.com   |brunopkr        |Activity    |
 |81933       |                         |                         |                |Activity    |
 |82011       |                         |                         |                |Activity    |
 |76446       |Diogo Carlos             |diogo.carlos@ist.utl.pt  |DigasMC         |Bank        |
