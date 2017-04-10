@@ -9,7 +9,7 @@ To run tests execute: mvn clean install
 |82011       |                         |                         |                |Activity    |
 |76446       |Diogo Carlos             |diogo.carlos@ist.utl.pt  |DigasMC         |Bank        |
 |78029       |                         |                         |                |Bank        |
-|78045       |                         |                         |                |Bank        |
+|78045       |André Monteiro           |andre_1540@hotmail.com   |AndreFBM        |Bank        |
 |70466       |Hugo Almeida             |hugomiguelfa@gmail.com   |almeidaHugo     |Hotel/Broker|
 |77915       |Gonçalo Santos           |goncalossantos@msn.com   |71514311215     |Hotel/Broker|
 |            |                         |                         |                |            |
