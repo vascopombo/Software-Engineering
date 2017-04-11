@@ -24,6 +24,7 @@ public abstract class RollbackTestAbstractClass {
 
 	@After
 	public void tearDown() {
+		ActivityProvider.providers.clear();
 		//for (Activity activity : FenixFramework.getDomainRoot().getActivitySet()){
 		//	activity.delete();
 		//}
