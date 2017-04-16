@@ -1,0 +1,14 @@
+package pt.ulisboa.tecnico.softeng.activity.domain;
+
+class ActivityProvider {
+
+}
+
+relation DomainRootHasActivityApplication {
+	.pt.ist.fenixframework.DomainRoot playsRole root {
+		multiplicity 1..1;
+	}
+	ActivityProvider playsRole activityprovider{
+		multiplicity 0..*;
+	}
+}
