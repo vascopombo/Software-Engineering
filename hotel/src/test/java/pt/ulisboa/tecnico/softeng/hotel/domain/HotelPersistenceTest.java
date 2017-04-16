@@ -11,6 +11,7 @@ import org.junit.Test;
 import pt.ist.fenixframework.Atomic;
 import pt.ist.fenixframework.Atomic.TxMode;
 import pt.ist.fenixframework.FenixFramework;
+import pt.ulisboa.tecnico.softeng.hotel.domain.Room.Type;
 
 public class HotelPersistenceTest {
 	
@@ -25,7 +26,8 @@ public class HotelPersistenceTest {
 
 	@Atomic(mode = TxMode.WRITE)
 	public void atomicProcess() {
-		new Hotel(HOTEL_CODE, HOTEL_NAME);
+		Hotel hotel1 = new Hotel(HOTEL_CODE, HOTEL_NAME);
+		Room room1 = new Room(hotel1, "01", Type.SINGLE);
 	}
 
 	@Atomic(mode = TxMode.READ)
@@ -38,6 +40,10 @@ public class HotelPersistenceTest {
 
 		assertEquals(HOTEL_CODE, hotel.getCode());
 		assertEquals(HOTEL_NAME, hotel.getName());
+		
+		assertEquals(1, hotel.getRoomSet().size());
+
+		List<Room> rooms = new ArrayList<>(hotel.getRoomSet());
 
 	}
 
