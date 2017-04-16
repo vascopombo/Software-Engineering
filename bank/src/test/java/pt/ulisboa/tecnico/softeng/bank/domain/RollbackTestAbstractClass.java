@@ -22,6 +22,9 @@ public abstract class RollbackTestAbstractClass {
 
 	@After
 	public void tearDown() {
+		for (Bank bank : FenixFramework.getDomainRoot().getBankSet()){
+ 			bank.delete();
+ 		}
 		try {
 			FenixFramework.getTransactionManager().rollback();
 		} catch (IllegalStateException | SecurityException | SystemException e) {
