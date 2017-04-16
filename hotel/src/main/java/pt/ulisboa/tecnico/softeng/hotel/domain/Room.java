@@ -24,10 +24,13 @@ public class Room extends Room_Base{
 		this.hotel = hotel;
 		this.number = number;
 		this.type = type;
+		
+		if(hotel.hasRoom(number)){
+			throw new HotelException();
+		}
 
 		setHotel(hotel);
 		
-		this.hotel.addRoom(this);
 	}
 	
 	public void delete() {
