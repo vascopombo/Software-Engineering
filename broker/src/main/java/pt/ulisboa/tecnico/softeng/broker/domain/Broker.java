@@ -31,6 +31,10 @@ public class Broker extends Broker_Base {
 		for (Adventure adventure : getAdventureSet()) {
 			adventure.delete();
 		}
+		
+		for (BulkRoomBooking bulkRoomBooking : getBulkRoomBookingSet()) {
+			bulkRoomBooking.delete();
+		}
 
 		deleteDomainObject();
 	}
@@ -53,9 +57,10 @@ public class Broker extends Broker_Base {
 		}
 	}
 
-	public void bulkBooking(int number, LocalDate arrival, LocalDate departure) {
+	public void bulkBooking(Broker broker, int number, LocalDate arrival, LocalDate departure) {
 		BulkRoomBooking bulkBooking = new BulkRoomBooking(number, arrival, departure);
-		this.bulkBookings.add(bulkBooking);
+		bulkBooking.setBroker(broker);
+		//this.bulkBookings.add(bulkBooking);
 		bulkBooking.processBooking();
 	}
 

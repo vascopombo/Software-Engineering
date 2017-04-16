@@ -13,6 +13,9 @@ import org.junit.Test;
 import pt.ist.fenixframework.Atomic;
 import pt.ist.fenixframework.Atomic.TxMode;
 import pt.ist.fenixframework.FenixFramework;
+import pt.ulisboa.tecnico.softeng.hotel.domain.Hotel;
+import pt.ulisboa.tecnico.softeng.hotel.domain.Room;
+import pt.ulisboa.tecnico.softeng.hotel.domain.Room.Type;
 
 public class BrokerPersistenceTest {
 	private static final String BROKER_NAME = "Happy Going";
@@ -33,8 +36,16 @@ public class BrokerPersistenceTest {
 	@Atomic(mode = TxMode.WRITE)
 	public void atomicProcess() {
 		Broker broker = new Broker(BROKER_CODE, BROKER_NAME);
+		
+		Hotel hotel = new Hotel("XPTO123", "Andorra");
+		new Room (hotel, "01", Type.SINGLE);
+		new Room (hotel, "02", Type.SINGLE);
+		new Room (hotel, "03", Type.SINGLE);
+
+		broker.bulkBooking(broker, 3, begin, end);
 
 		new Adventure(broker, this.begin, this.end, AGE, IBAN, AMOUNT);
+		
 	}
 
 	@Atomic(mode = TxMode.READ)
@@ -61,6 +72,15 @@ public class BrokerPersistenceTest {
 
 		assertEquals(Adventure.State.PROCESS_PAYMENT, adventure.getState().getValue());
 		assertEquals(0, adventure.getState().getNumOfRemoteErrors());
+		
+		assertEquals(1, broker.getBulkRoomBookingSet().size());
+		List<BulkRoomBooking> bulks = new ArrayList<>(broker.getBulkRoomBookingSet());
+		BulkRoomBooking bulk = bulks.get(0);
+		assertEquals(3, bulk.getReferences().size());
+		
+		
+		
+		
 	}
 
 	@After
@@ -68,6 +88,9 @@ public class BrokerPersistenceTest {
 	public void tearDown() {
 		for (Broker broker : FenixFramework.getDomainRoot().getBrokerSet()) {
 			broker.delete();
+		}
+		for (Hotel hotel : FenixFramework.getDomainRoot().getHotelSet()) {
+			hotel.delete();
 		}
 	}
 

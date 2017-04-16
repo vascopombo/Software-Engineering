@@ -27,9 +27,12 @@ public class BulkRoomBooking extends BulkRoomBooking_Base{
 		this.number = number;
 		this.arrival = arrival;
 		this.departure = departure;
+		
 	}
 	
 	public void delete() {
+		setBroker(null); 
+		
 		deleteDomainObject();
 	}
 

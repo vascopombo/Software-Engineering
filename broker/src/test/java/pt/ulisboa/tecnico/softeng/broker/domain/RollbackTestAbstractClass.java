@@ -29,6 +29,9 @@ public abstract class RollbackTestAbstractClass {
 		for(Hotel hotel : FenixFramework.getDomainRoot().getHotelSet()){
 			hotel.delete();
 		}
+		for(Broker broker : FenixFramework.getDomainRoot().getBrokerSet()){
+			broker.delete();
+		}
 		ActivityProvider.providers.clear();
 
 		try {
