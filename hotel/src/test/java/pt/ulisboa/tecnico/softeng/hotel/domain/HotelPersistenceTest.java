@@ -44,7 +44,13 @@ public class HotelPersistenceTest {
 		assertEquals(1, hotel.getRoomSet().size());
 
 		List<Room> rooms = new ArrayList<>(hotel.getRoomSet());
+		
+		Room room = rooms.get(0);
 
+		assertEquals("01", room.getNumber());
+		assertEquals(Type.SINGLE, room.getType());
+		assertEquals(HOTEL_CODE, room.getHotel().getCode());
+		assertEquals(HOTEL_NAME, room.getHotel().getName());
 	}
 
 	@After
