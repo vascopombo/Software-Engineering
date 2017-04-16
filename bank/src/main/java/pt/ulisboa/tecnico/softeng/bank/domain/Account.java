@@ -1,8 +1,9 @@
 package pt.ulisboa.tecnico.softeng.bank.domain;
 
+import pt.ist.fenixframework.FenixFramework;
 import pt.ulisboa.tecnico.softeng.bank.exception.BankException;
 
-public class Account {
+public class Account extends Account_Base {
 	private static int counter = 0;
 
 	private final Bank bank;
@@ -18,7 +19,15 @@ public class Account {
 		this.client = client;
 		this.balance = 0;
 
-		bank.addAccount(this);
+		setBank(bank);
+
+		this.bank.addAccount(this);
+	}
+
+	public void delete() {
+		setBank(null);
+
+		deleteDomainObject();
 	}
 
 	private void checkArguments(Bank bank, Client client) {
@@ -32,7 +41,7 @@ public class Account {
 
 	}
 
-	Bank getBank() {
+	public Bank getBank() {
 		return this.bank;
 	}
 

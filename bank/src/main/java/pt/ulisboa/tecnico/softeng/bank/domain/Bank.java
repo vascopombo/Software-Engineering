@@ -30,6 +30,10 @@ public class Bank extends Bank_Base {
 	public void delete() {
 		setRoot(null);
 
+		for(Account account : getAccountSet()){
+ 			account.delete();
+ 		}
+
 		deleteDomainObject();
 	}
 
@@ -65,7 +69,7 @@ public class Bank extends Bank_Base {
 		return this.clients.size();
 	}
 
-	void addAccount(Account account) {
+	public void addAccount(Account account) {
 		this.accounts.add(account);
 	}
 
