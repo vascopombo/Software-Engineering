@@ -5,9 +5,10 @@ import java.util.Set;
 
 import org.joda.time.LocalDate;
 
+import pt.ist.fenixframework.FenixFramework;
 import pt.ulisboa.tecnico.softeng.hotel.exception.HotelException;
 
-public class Room {
+public class Room extends Room_Base{
 	public static enum Type {
 		SINGLE, DOUBLE
 	}
@@ -24,7 +25,15 @@ public class Room {
 		this.number = number;
 		this.type = type;
 
+		setHotel(hotel);
+		
 		this.hotel.addRoom(this);
+	}
+	
+	public void delete() {
+		setHotel(null);
+
+		deleteDomainObject();
 	}
 
 	private void checkArguments(Hotel hotel, String number, Type type) {
