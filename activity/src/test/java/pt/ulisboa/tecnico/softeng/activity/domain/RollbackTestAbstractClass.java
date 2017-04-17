@@ -24,10 +24,9 @@ public abstract class RollbackTestAbstractClass {
 
 	@After
 	public void tearDown() {
-		ActivityProvider.providers.clear();
-		//for (Activity activity : FenixFramework.getDomainRoot().getActivitySet()){
-		//	activity.delete();
-		//}
+		for (ActivityProvider activity : FenixFramework.getDomainRoot().getActivityproviderSet()){
+			activity.delete();
+		}
 		try {
 			FenixFramework.getTransactionManager().rollback();
 		} catch (IllegalStateException | SecurityException | SystemException e) {
