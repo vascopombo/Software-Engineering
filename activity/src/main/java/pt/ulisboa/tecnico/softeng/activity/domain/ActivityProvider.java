@@ -15,8 +15,6 @@ public class ActivityProvider extends ActivityProvider_Base{
 
 	static final int CODE_SIZE = 6;
 
-	private final String name;
-	private final String code;
 	private final Set<Activity> activities = new HashSet<>();
 
 	public ActivityProvider(String code, String name) {
@@ -24,8 +22,8 @@ public class ActivityProvider extends ActivityProvider_Base{
 		
 		setRoot(FenixFramework.getDomainRoot());
 
-		this.code = code;
-		this.name = name;
+		setCode(code);
+		setName(name);
 
 	}
 
@@ -51,13 +49,6 @@ public class ActivityProvider extends ActivityProvider_Base{
 		deleteDomainObject();
 	}
 
-	public String getName() {
-		return this.name;
-	}
-
-	public String getCode() {
-		return this.code;
-	}
 
 	int getNumberOfActivities() {
 		return this.activities.size();
