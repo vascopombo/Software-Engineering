@@ -7,6 +7,7 @@ import java.util.Set;
 
 import org.joda.time.LocalDate;
 
+import pt.ist.fenixframework.FenixFramework;
 import pt.ulisboa.tecnico.softeng.activity.dataobjects.ActivityReservationData;
 import pt.ulisboa.tecnico.softeng.activity.exception.ActivityException;
 
@@ -21,6 +22,8 @@ public class ActivityProvider extends ActivityProvider_Base{
 
 	public ActivityProvider(String code, String name) {
 		checkArguments(code, name);
+		
+		setRoot(FenixFramework.getDomainRoot());
 
 		this.code = code;
 		this.name = name;
