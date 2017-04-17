@@ -32,7 +32,9 @@ public abstract class RollbackTestAbstractClass {
 		for(Broker broker : FenixFramework.getDomainRoot().getBrokerSet()){
 			broker.delete();
 		}
-		ActivityProvider.providers.clear();
+		for (ActivityProvider provider : FenixFramework.getDomainRoot().getActivityproviderSet()){
+			provider.delete();
+		}
 
 		try {
 			FenixFramework.getTransactionManager().rollback();
