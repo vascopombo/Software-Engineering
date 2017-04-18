@@ -13,3 +13,17 @@ relation DomainRootHasActivityApplication {
 		multiplicity 0..*;
 	}
 }
+
+class Activity {
+
+
+}
+
+relation ActivityHasActivityProvider {
+	ActivityProvider playsRole activityProvider{
+		multiplicity 1..1;
+	}
+	Activity playsRole Activity{
+		multiplicity 0..*;
+	}
+}
