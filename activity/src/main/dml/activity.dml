@@ -15,11 +15,14 @@ relation DomainRootHasActivityApplication {
 }
 
 class Activity {
-
-
+	String name;
+	String code;
+	int minAge;
+	int maxAge;
+	int capacity;
 }
 
-relation ActivityHasActivityProvider {
+relation ActivityProviderHasActivity {
 	ActivityProvider playsRole activityProvider{
 		multiplicity 1..1;
 	}

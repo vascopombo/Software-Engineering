@@ -45,7 +45,9 @@ public class ActivityProvider extends ActivityProvider_Base{
 	
 	public void delete() {
 		setRoot(null);
-
+		for (Activity activity : getActivitySet()){
+			activity.delete();
+		}
 		deleteDomainObject();
 	}
 
