@@ -6,7 +6,7 @@ To run tests execute: mvn clean install
 | ---------- | ----------------------- | ----------------------- | ---------------| ---------  |
 |76508       |Bruno Soalheira          |bruno.1994.0@gmail.com   |brunopkr        |Activity    |
 |81933       |Joao Carreira            |jottapedro96@hotmail.com |JoaoCarreira    |Activity    |
-|82011       |                         |                         |                |Activity    |
+|82011       |Joao Costa               |joao.costa1195@gmail.com |JoaoC0sta       |Activity    |
 |76446       |Diogo Carlos             |diogo.carlos@ist.utl.pt  |DigasMC         |Bank        |
 |78029       |Vasco Pombo              |vasco_pombo@hotmail.com  |vascopombo      |Bank        |
 |78045       |André Monteiro           |andre_1540@hotmail.com   |AndreFBM        |Bank        |
