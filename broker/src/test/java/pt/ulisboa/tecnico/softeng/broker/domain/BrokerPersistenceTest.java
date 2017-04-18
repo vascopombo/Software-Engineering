@@ -42,7 +42,7 @@ public class BrokerPersistenceTest {
 		new Room (hotel, "02", Type.SINGLE);
 		new Room (hotel, "03", Type.SINGLE);
 
-		broker.bulkBooking(broker, 3, begin, end);
+		broker.bulkBooking(3, begin, end);
 
 		new Adventure(broker, this.begin, this.end, AGE, IBAN, AMOUNT);
 		
@@ -78,8 +78,9 @@ public class BrokerPersistenceTest {
 		BulkRoomBooking bulk = bulks.get(0);
 		assertEquals(3, bulk.getReferences().size());
 		
-		
-		
+		assertEquals(3, bulk.getNumber());
+		assertEquals(begin, bulk.getArrival());
+		assertEquals(end, bulk.getDeparture());
 		
 	}
 

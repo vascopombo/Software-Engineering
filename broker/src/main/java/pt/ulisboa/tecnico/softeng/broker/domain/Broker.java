@@ -13,8 +13,6 @@ import pt.ulisboa.tecnico.softeng.broker.exception.BrokerException;
 public class Broker extends Broker_Base {
 	private static Logger logger = LoggerFactory.getLogger(Broker.class);
 
-	private final Set<BulkRoomBooking> bulkBookings = new HashSet<>();
-
 	public Broker(String code, String name) {
 		checkCode(code);
 		setCode(code);
@@ -57,10 +55,9 @@ public class Broker extends Broker_Base {
 		}
 	}
 
-	public void bulkBooking(Broker broker, int number, LocalDate arrival, LocalDate departure) {
+	public void bulkBooking(int number, LocalDate arrival, LocalDate departure) {
 		BulkRoomBooking bulkBooking = new BulkRoomBooking(number, arrival, departure);
-		bulkBooking.setBroker(broker);
-		//this.bulkBookings.add(bulkBooking);
+		bulkBooking.setBroker(this);
 		bulkBooking.processBooking();
 	}
 

@@ -16,18 +16,15 @@ public class BulkRoomBooking extends BulkRoomBooking_Base{
 	public static final int MAX_REMOTE_ERRORS = 10;
 
 	private final Set<String> references = new HashSet<>();
-	private final int number;
-	private final LocalDate arrival;
-	private final LocalDate departure;
 	private boolean cancelled = false;
 	private int numberOfHotelExceptions = 0;
 	private int numberOfRemoteErrors = 0;
 
 	public BulkRoomBooking(int number, LocalDate arrival, LocalDate departure) {
-		this.number = number;
-		this.arrival = arrival;
-		this.departure = departure;
 		
+		setNumber(number);
+		setArrival(arrival);
+		setDeparture(departure);
 	}
 	
 	public void delete() {
@@ -40,25 +37,13 @@ public class BulkRoomBooking extends BulkRoomBooking_Base{
 		return this.references;
 	}
 
-	public int getNumber() {
-		return this.number;
-	}
-
-	public LocalDate getArrival() {
-		return this.arrival;
-	}
-
-	public LocalDate getDeparture() {
-		return this.departure;
-	}
-
 	public void processBooking() {
 		if (this.cancelled) {
 			return;
 		}
 
 		try {
-			this.references.addAll(HotelInterface.bulkBooking(this.number, this.arrival, this.departure));
+			this.references.addAll(HotelInterface.bulkBooking(getNumber(), getArrival(), getDeparture()));
 			this.numberOfHotelExceptions = 0;
 			this.numberOfRemoteErrors = 0;
 			return;

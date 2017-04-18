@@ -59,7 +59,9 @@ relation AdventureHasState {
 }
 
 class BulkRoomBooking {
-	
+	int number;
+	LocalDate arrival;
+	LocalDate departure;	
 }
 
 relation BrokerHasBulkRoomBooking {
