@@ -45,3 +45,18 @@ relation ActivityOfferHasActivity{
 	}
 
 }
+
+class Booking{
+
+}
+
+relation ActivityOfferHasBooking{
+	ActivityOffer playsRole ActivityOffer{
+		multiplicity 1..1;
+	}
+	
+	Booking playsRole Booking{
+		multiplicity 0..*;
+	}
+
+}

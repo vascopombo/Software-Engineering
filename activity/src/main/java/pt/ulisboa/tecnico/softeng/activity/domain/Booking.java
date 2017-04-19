@@ -3,8 +3,9 @@ package pt.ulisboa.tecnico.softeng.activity.domain;
 import org.joda.time.LocalDate;
 
 import pt.ulisboa.tecnico.softeng.activity.exception.ActivityException;
+import pt.ist.fenixframework.FenixFramework;
 
-public class Booking {
+public class Booking extends Booking_Base{
 	private static int counter = 0;
 
 	private final String reference;
@@ -24,7 +25,11 @@ public class Booking {
 			throw new ActivityException();
 		}
 	}
-
+	
+	public void delete() {
+		deleteDomainObject();
+	}
+	
 	public String getReference() {
 		return this.reference;
 	}
