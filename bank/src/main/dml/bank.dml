@@ -33,9 +33,9 @@ relation BankHasAccount {
 
 relation BankHasClient {
 	Bank playsRole bank {
-		multiplicity 1..1:
+		multiplicity 1..1;
 	}
 	Client playsRole client {
-		multiplicity 0..*:
+		multiplicity 0..*;
 	}
 }
