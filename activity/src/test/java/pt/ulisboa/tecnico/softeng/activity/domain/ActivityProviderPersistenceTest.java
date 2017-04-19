@@ -16,6 +16,10 @@ public class ActivityProviderPersistenceTest {
 
 	private static final String PROVIDER_CODE = "test12";
 	private static final String PROVIDER_NAME = "badoo";
+	private static final String ACTIVITY_NAME = "futebol";
+	private static final int MIN_AGE = 18;
+	private static final int MAX_AGE = 40;
+	private static final int CAPACITY= 22;
 	
 	@Test
 	public void success() {
@@ -25,7 +29,8 @@ public class ActivityProviderPersistenceTest {
 
 	@Atomic(mode = TxMode.WRITE)
 	 public void atomicProcess() {
-		new ActivityProvider(PROVIDER_CODE, PROVIDER_NAME);
+		ActivityProvider ap = new ActivityProvider(PROVIDER_CODE, PROVIDER_NAME);
+		Activity a = new Activity(ap, ACTIVITY_NAME, MIN_AGE, MAX_AGE, CAPACITY);
 	 }
 	
 	@Atomic(mode = TxMode.READ)
@@ -37,7 +42,18 @@ public class ActivityProviderPersistenceTest {
 
 		 	assertEquals(PROVIDER_CODE, activityprovider.getCode());
 		 	assertEquals(PROVIDER_NAME, activityprovider.getName());
-		
+
+		 	assertEquals(1, activityprovider.getActivitySet().size());
+
+			List<Activity> activities = new ArrayList<>(activityprovider.getActivitySet());
+			
+			Activity activity = activities.get(0);
+
+			assertEquals(activityprovider, activity.getActivityProvider());
+			assertEquals(ACTIVITY_NAME, activity.getName());
+			assertEquals(MIN_AGE, activity.getMinAge());
+			assertEquals(MAX_AGE, activity.getMaxAge());
+			assertEquals(CAPACITY, activity.getCapacity());
 		}
 	
 		@After

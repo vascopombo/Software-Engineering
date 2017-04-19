@@ -49,11 +49,6 @@ public class ActivityProvider extends ActivityProvider_Base{
 	}
 
 
-	int getNumberOfActivities() {
-		return getActivitySet().size();
-	}
-
-
 	public List<ActivityOffer> findOffer(LocalDate begin, LocalDate end, int age) {
 		List<ActivityOffer> result = new ArrayList<>();
 		for (Activity activity : getActivitySet()) {

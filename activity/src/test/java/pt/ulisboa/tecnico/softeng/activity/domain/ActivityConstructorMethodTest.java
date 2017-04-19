@@ -30,7 +30,7 @@ public class ActivityConstructorMethodTest extends RollbackTestAbstractClass{
 		Assert.assertEquals(MAX_AGE, activity.getMaxAge());
 		Assert.assertEquals(CAPACITY, activity.getCapacity());
 		Assert.assertEquals(0, activity.getNumberOfOffers());
-		Assert.assertEquals(1, this.provider.getNumberOfActivities());
+		Assert.assertEquals(1, this.provider.getActivitySet().size());
 	}
 
 	@Test(expected = ActivityException.class)
@@ -59,7 +59,7 @@ public class ActivityConstructorMethodTest extends RollbackTestAbstractClass{
 		Assert.assertEquals(MAX_AGE, activity.getMaxAge());
 		Assert.assertEquals(CAPACITY, activity.getCapacity());
 		Assert.assertEquals(0, activity.getNumberOfOffers());
-		Assert.assertEquals(1, this.provider.getNumberOfActivities());
+		Assert.assertEquals(1, this.provider.getActivitySet().size());
 	}
 
 	@Test(expected = ActivityException.class)
@@ -78,7 +78,7 @@ public class ActivityConstructorMethodTest extends RollbackTestAbstractClass{
 		Assert.assertEquals(99, activity.getMaxAge());
 		Assert.assertEquals(CAPACITY, activity.getCapacity());
 		Assert.assertEquals(0, activity.getNumberOfOffers());
-		Assert.assertEquals(1, this.provider.getNumberOfActivities());
+		Assert.assertEquals(1, this.provider.getActivitySet().size());
 	}
 
 	@Test(expected = ActivityException.class)
@@ -97,7 +97,7 @@ public class ActivityConstructorMethodTest extends RollbackTestAbstractClass{
 		Assert.assertEquals(MIN_AGE, activity.getMaxAge());
 		Assert.assertEquals(CAPACITY, activity.getCapacity());
 		Assert.assertEquals(0, activity.getNumberOfOffers());
-		Assert.assertEquals(1, this.provider.getNumberOfActivities());
+		Assert.assertEquals(1, this.provider.getActivitySet().size());
 	}
 
 	@Test(expected = ActivityException.class)
@@ -121,7 +121,7 @@ public class ActivityConstructorMethodTest extends RollbackTestAbstractClass{
 		Assert.assertEquals(MAX_AGE, activity.getMaxAge());
 		Assert.assertEquals(1, activity.getCapacity());
 		Assert.assertEquals(0, activity.getNumberOfOffers());
-		Assert.assertEquals(1, this.provider.getNumberOfActivities());
+		Assert.assertEquals(1, this.provider.getActivitySet().size());
 	}
 
 	@Test(expected = ActivityException.class)
