@@ -1,5 +1,6 @@
 package pt.ulisboa.tecnico.softeng.bank.domain;
 
+import pt.ist.fenixframework.FenixFramework;
 import pt.ulisboa.tecnico.softeng.bank.exception.BankException;
 
 public class Client extends Client_Base{
@@ -8,7 +9,7 @@ public class Client extends Client_Base{
 	public Client(Bank bank, String name) {
 		checkArguments(bank, name);
 		
-		setId(Integer.toString(++Client.counter));
+		setID(Integer.toString(++Client.counter));
 		setName(name);
 		setBank(bank);
 		bank.addClient(this);
