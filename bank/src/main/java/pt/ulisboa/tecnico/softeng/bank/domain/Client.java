@@ -2,7 +2,7 @@ package pt.ulisboa.tecnico.softeng.bank.domain;
 
 import pt.ulisboa.tecnico.softeng.bank.exception.BankException;
 
-public class Client {
+public class Client extends Client_Base{
 	private static int counter = 0;
 
 	private final String name;
@@ -15,6 +15,10 @@ public class Client {
 		this.name = name;
 
 		bank.addClient(this);
+	}
+	
+	public void delete() {
+		deleteDomainObject();
 	}
 
 	private void checkArguments(Bank bank, String name) {

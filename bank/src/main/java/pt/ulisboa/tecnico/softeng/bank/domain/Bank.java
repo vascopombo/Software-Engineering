@@ -31,6 +31,10 @@ public class Bank extends Bank_Base {
 		for(Account account : getAccountSet()){
  			account.delete();
  		}
+		
+		for(Client client : getClientSet()) {
+			client.delete();
+		}
 
 		deleteDomainObject();
 	}
@@ -68,7 +72,7 @@ public class Bank extends Bank_Base {
 		return this.clients.contains(client);
 	}
 
-	void addClient(Client client) {
+	public void addClient(Client client) {
 		this.clients.add(client);
 	}
 
