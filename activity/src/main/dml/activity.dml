@@ -30,3 +30,18 @@ relation ActivityProviderHasActivity {
 		multiplicity 0..*;
 	}
 }
+
+class ActivityOffer{
+
+}
+
+relation ActivityOfferHasActivity{
+	Activity playsRole Activity{
+		multiplicity 1..1;
+	}
+	
+	ActivityOffer playsRole activityOffer{
+		multiplicity 0..*;
+	}
+
+}
