@@ -26,7 +26,7 @@ public class RoomReserveMethodTest extends RollbackTestAbstractClass{
 	public void success() {
 		Booking booking = this.room.reserve(Type.SINGLE, this.arrival, this.departure);
 
-		Assert.assertEquals(1, this.room.getNumberOfBookings());
+		Assert.assertEquals(1, this.room.getBookingSet().size());
 		Assert.assertTrue(booking.getReference().length() > 0);
 		Assert.assertEquals(this.arrival, booking.getArrival());
 		Assert.assertEquals(this.departure, booking.getDeparture());
@@ -60,7 +60,7 @@ public class RoomReserveMethodTest extends RollbackTestAbstractClass{
 			this.room.reserve(Type.SINGLE, this.arrival, this.departure);
 			fail();
 		} catch (HotelException he) {
-			Assert.assertEquals(1, this.room.getNumberOfBookings());
+			Assert.assertEquals(1, this.room.getBookingSet().size());
 		}
 	}
 }
