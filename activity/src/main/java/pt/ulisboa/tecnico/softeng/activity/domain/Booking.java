@@ -17,7 +17,7 @@ public class Booking extends Booking_Base{
 			throw new ActivityException();
 		}
 		
-		offer.bookings.add(booking);
+		offer.addBooking(this);
 	}
 
 	private void checkArguments(ActivityProvider provider, ActivityOffer offer) {
@@ -27,6 +27,7 @@ public class Booking extends Booking_Base{
 	}
 	
 	public void delete() {
+		setActivityOffer(null);
 		deleteDomainObject();
 	}
 	
