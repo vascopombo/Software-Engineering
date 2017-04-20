@@ -2,9 +2,10 @@ package pt.ulisboa.tecnico.softeng.hotel.domain;
 
 import org.joda.time.LocalDate;
 
+import pt.ist.fenixframework.FenixFramework;
 import pt.ulisboa.tecnico.softeng.hotel.exception.HotelException;
 
-public class Booking {
+public class Booking extends Booking_Base {
 	private static int counter = 0;
 
 	private final String reference;
@@ -19,6 +20,11 @@ public class Booking {
 		this.reference = hotel.getCode() + Integer.toString(++Booking.counter);
 		this.arrival = arrival;
 		this.departure = departure;
+	}
+	
+	public void delete() {
+		setRoom(null);
+		deleteDomainObject();
 	}
 
 	private void checkArguments(Hotel hotel, LocalDate arrival, LocalDate departure) {
