@@ -40,15 +40,6 @@ public class ActivityOffer extends ActivityOffer_Base {
 		return count;
 	}
 
-	void addBooking(Booking booking) {
-		if (getCapacity() == getNumberOfBookings()) {
-			throw new ActivityException();
-		}
-
-		this.bookings.add(booking);
-
-	}
-
 	boolean available(LocalDate begin, LocalDate end) {
 		return hasVacancy() && matchDate(begin, end);
 	}
@@ -68,7 +59,7 @@ public class ActivityOffer extends ActivityOffer_Base {
 	public Booking getBooking(String reference) {
 		for (Booking booking : this.bookings) {
 			if (booking.getReference().equals(reference)
-					|| (booking.isCancelled() && booking.getCancellation().equals(reference))) {
+					|| (booking.isCancelled() && booking.getCancel().equals(reference))) {
 				return booking;
 			}
 		}
