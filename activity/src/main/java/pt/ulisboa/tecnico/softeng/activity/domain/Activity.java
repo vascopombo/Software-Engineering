@@ -17,7 +17,6 @@ public class Activity extends Activity_Base{
 	public Activity(ActivityProvider provider, String name, int minAge, int maxAge, int capacity) {
 		checkArguments(provider, name, minAge, maxAge, capacity);
 
-		setActivityProvider(provider);
 		setName(name);
 		setCode(provider.getCode() + Integer.toString(++Activity.counter));
 		setMinAge(minAge);
@@ -75,10 +74,6 @@ public class Activity extends Activity_Base{
 			}
 		}
 		return null;
-	}
-
-	public Set<ActivityOffer> getOffers() {
-		return getActivityOfferSet();
 	}
 
 }
