@@ -6,6 +6,8 @@ class Bank {
 }
 
 class Account{
+	String IBAN;
+    int balance;
 }
 
 class Client {
@@ -36,6 +38,15 @@ relation BankHasClient {
 		multiplicity 1..1;
 	}
 	Client playsRole client {
+		multiplicity 0..*;
+	}
+}
+
+relation ClientHasAccount {
+	Client playsRole client{
+		multiplicity 1..1;
+	}
+	Account playsRole account{
 		multiplicity 0..*;
 	}
 }
