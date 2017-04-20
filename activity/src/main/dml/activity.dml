@@ -32,7 +32,9 @@ relation ActivityProviderHasActivity {
 }
 
 class ActivityOffer{
-
+	LocalDate begin;
+	LocalDate end;
+	int capacity;
 }
 
 relation ActivityOfferHasActivity{

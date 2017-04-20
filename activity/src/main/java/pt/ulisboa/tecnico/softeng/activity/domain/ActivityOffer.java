@@ -8,19 +8,16 @@ import org.joda.time.LocalDate;
 import pt.ulisboa.tecnico.softeng.activity.exception.ActivityException;
 
 public class ActivityOffer extends ActivityOffer_Base {
-	private final LocalDate begin;
-	private final LocalDate end;
-	private final int capacity;
 	private final Set<Booking> bookings = new HashSet<>();
 
 	public ActivityOffer(Activity activity, LocalDate begin, LocalDate end) {
 		checkArguments(activity, begin, end);
 
-		this.begin = begin;
-		this.end = end;
-		this.capacity = activity.getCapacity();
+		setBegin(begin);
+		setEnd(end);
+		setCapacity(activity.getCapacity());
 
-		activity.addOffer(this);
+		activity.addActivityOffer(this);
 	}
 
 	private void checkArguments(Activity activity, LocalDate begin, LocalDate end) {
@@ -31,14 +28,6 @@ public class ActivityOffer extends ActivityOffer_Base {
 		if (end.isBefore(begin)) {
 			throw new ActivityException();
 		}
-	}
-
-	public LocalDate getBegin() {
-		return this.begin;
-	}
-
-	public LocalDate getEnd() {
-		return this.end;
 	}
 
 	int getNumberOfBookings() {
@@ -52,7 +41,7 @@ public class ActivityOffer extends ActivityOffer_Base {
 	}
 
 	void addBooking(Booking booking) {
-		if (this.capacity == getNumberOfBookings()) {
+		if (getCapacity() == getNumberOfBookings()) {
 			throw new ActivityException();
 		}
 
@@ -73,7 +62,7 @@ public class ActivityOffer extends ActivityOffer_Base {
 	}
 
 	boolean hasVacancy() {
-		return this.capacity > getNumberOfBookings();
+		return getCapacity() > getNumberOfBookings();
 	}
 
 	public Booking getBooking(String reference) {
