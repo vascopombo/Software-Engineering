@@ -55,10 +55,6 @@ public class Bank extends Bank_Base {
 	}
 
 
-	int getNumberOfAccounts() {
-		return getAccountSet().size();
-	}
-
 	int getNumberOfClients() {
 		return this.clients.size();
 	}
