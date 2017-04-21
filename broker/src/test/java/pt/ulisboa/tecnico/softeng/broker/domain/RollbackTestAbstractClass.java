@@ -9,6 +9,7 @@ import org.junit.Before;
 import pt.ist.fenixframework.FenixFramework;
 import pt.ist.fenixframework.core.WriteOnReadError;
 import pt.ulisboa.tecnico.softeng.activity.domain.ActivityProvider;
+import pt.ulisboa.tecnico.softeng.bank.domain.Bank;
 import pt.ulisboa.tecnico.softeng.hotel.domain.Hotel;
 
 public abstract class RollbackTestAbstractClass {
@@ -34,6 +35,9 @@ public abstract class RollbackTestAbstractClass {
 		}
 		for (ActivityProvider provider : FenixFramework.getDomainRoot().getActivityproviderSet()){
 			provider.delete();
+		}
+		for (Bank bank : FenixFramework.getDomainRoot().getBankSet()){
+			bank.delete();
 		}
 
 		try {
