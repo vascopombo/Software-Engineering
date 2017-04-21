@@ -1,6 +1,6 @@
 package pt.ulisboa.tecnico.softeng.bank.domain;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +15,7 @@ import pt.ist.fenixframework.FenixFramework;
 public class BankPersistenceTest {
 	private static final String BANK_NAME = "Money";
 	private static final String BANK_CODE = "BK01";
+	private static final String CLIENT_NAME = "Joana";
 
 	@Test
 	public void success() {
@@ -24,7 +25,9 @@ public class BankPersistenceTest {
 
 	@Atomic(mode = TxMode.WRITE)
 	public void atomicProcess() {
-		new Bank(BANK_NAME, BANK_CODE);
+		Bank novo = new Bank(BANK_NAME, BANK_CODE);
+		Client client1 = new Client(novo, CLIENT_NAME);
+		Account account1 = new Account(novo, client1);
 	}
 
 	@Atomic(mode = TxMode.READ)
@@ -37,6 +40,16 @@ public class BankPersistenceTest {
 
 		assertEquals(BANK_NAME, bank.getName());
 		assertEquals(BANK_CODE, bank.getCode());
+
+		assertEquals(1, bank.getAccountSet().size());
+		List<Account> accounts = new ArrayList<>(bank.getAccountSet());		
+		Account account = accounts.get(0);
+
+		assertNotNull(account.getIBAN());
+		assertEquals(0, account.getBalance());
+		assertEquals(BANK_NAME, account.getBank().getName());
+		assertEquals(BANK_CODE, account.getBank().getCode());
+		assertEquals(CLIENT_NAME, account.getClient().getName());
 	}
 
 	@After
