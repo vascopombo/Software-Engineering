@@ -23,7 +23,7 @@ public class Operation extends Operation_Base{
 		this.setValue(value);
 		this.setTime(DateTime.now());
 
-		account.getBank().addLog(this);
+		account.getBank().addOperation(this);
 	}
 	
 	public void delete(){

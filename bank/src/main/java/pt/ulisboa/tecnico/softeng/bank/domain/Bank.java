@@ -12,7 +12,6 @@ import pt.ulisboa.tecnico.softeng.bank.exception.BankException;
 public class Bank extends Bank_Base {
 	public static final int CODE_SIZE = 4;
 
-	private final List<Operation> log = new ArrayList<>();
 
 	public Bank(String name, String code) {
 		checkArguments(name, code);
@@ -32,6 +31,10 @@ public class Bank extends Bank_Base {
 		
 		for(Client client : getClientSet()) {
 			client.delete();
+		}
+		
+		for(Operation operation : getOperationSet()) {
+			operation.delete();
 		}
 
 		deleteDomainObject();
@@ -57,10 +60,6 @@ public class Bank extends Bank_Base {
 		return getClientSet().contains(client);
 	}
 
-	void addLog(Operation operation) {
-		this.log.add(operation);
-	}
-
 	public Account getAccount(String IBAN) {
 		if (IBAN == null || IBAN.trim().equals("")) {
 			throw new BankException();
@@ -76,7 +75,7 @@ public class Bank extends Bank_Base {
 	}
 
 	public Operation getOperation(String reference) {
-		for (Operation operation : this.log) {
+		for (Operation operation : this.getOperationSet()) {
 			if (operation.getReference().equals(reference)) {
 				return operation;
 			}
