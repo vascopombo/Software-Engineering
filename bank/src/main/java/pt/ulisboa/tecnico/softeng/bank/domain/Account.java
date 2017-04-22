@@ -1,6 +1,5 @@
 package pt.ulisboa.tecnico.softeng.bank.domain;
 
-import pt.ist.fenixframework.FenixFramework;
 import pt.ulisboa.tecnico.softeng.bank.exception.BankException;
 
 public class Account extends Account_Base {
@@ -30,7 +29,7 @@ public class Account extends Account_Base {
 			throw new BankException();
 		}
 
-		if (!bank.hasClient(client)) {
+		if (!bank.getClientSet().contains(client)) {
 			throw new BankException();
 		}
 

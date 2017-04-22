@@ -1,10 +1,5 @@
 package pt.ulisboa.tecnico.softeng.bank.domain;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
 import pt.ist.fenixframework.FenixFramework;
 import pt.ulisboa.tecnico.softeng.bank.dataobjects.BankOperationData;
 import pt.ulisboa.tecnico.softeng.bank.exception.BankException;
@@ -54,10 +49,6 @@ public class Bank extends Bank_Base {
 				throw new BankException();
 			}
 		}
-	}
-
-	boolean hasClient(Client client) {
-		return getClientSet().contains(client);
 	}
 
 	public Account getAccount(String IBAN) {
