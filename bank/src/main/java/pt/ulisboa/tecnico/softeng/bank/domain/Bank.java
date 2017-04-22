@@ -55,15 +55,15 @@ public class Bank extends Bank_Base {
 
 
 	int getNumberOfClients() {
-		return this.clients.size();
+		return getClientSet().size();
 	}
 
 	boolean hasClient(Client client) {
-		return this.clients.contains(client);
+		return getClientSet().contains(client);
 	}
 
 	public void addClient(Client client) {
-		this.clients.add(client);
+		getClientSet().add(client);
 	}
 
 	void addLog(Operation operation) {

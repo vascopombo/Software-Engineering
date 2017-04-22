@@ -50,6 +50,15 @@ public class BankPersistenceTest {
 		assertEquals(BANK_NAME, account.getBank().getName());
 		assertEquals(BANK_CODE, account.getBank().getCode());
 		assertEquals(CLIENT_NAME, account.getClient().getName());
+		
+		assertEquals(1, bank.getClientSet().size());
+		List<Client> clients = new ArrayList<>(bank.getClientSet());
+		Client client = clients.get(0);
+		
+		assertNotNull(client.getID());
+		assertEquals(CLIENT_NAME, client.getName());
+		assertEquals(BANK_NAME, client.getBank().getName());
+		assertEquals(BANK_CODE, client.getBank().getCode());
 	}
 
 	@After
