@@ -57,10 +57,6 @@ public class Bank extends Bank_Base {
 		return getClientSet().contains(client);
 	}
 
-	public void addClient(Client client) {
-		getClientSet().add(client);
-	}
-
 	void addLog(Operation operation) {
 		this.log.add(operation);
 	}

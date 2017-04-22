@@ -1,6 +1,5 @@
 package pt.ulisboa.tecnico.softeng.bank.domain;
 
-import pt.ist.fenixframework.FenixFramework;
 import pt.ulisboa.tecnico.softeng.bank.exception.BankException;
 
 public class Client extends Client_Base{
