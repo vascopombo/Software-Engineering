@@ -1,7 +1,5 @@
 package pt.ulisboa.tecnico.softeng.activity.domain;
 
-import java.util.HashSet;
-import java.util.Set;
 
 import org.joda.time.LocalDate;
 

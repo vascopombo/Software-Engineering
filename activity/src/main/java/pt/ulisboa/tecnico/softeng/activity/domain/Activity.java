@@ -5,7 +5,6 @@ import java.util.Set;
 
 import org.joda.time.LocalDate;
 
-import pt.ist.fenixframework.FenixFramework;
 import pt.ulisboa.tecnico.softeng.activity.exception.ActivityException;
 
 public class Activity extends Activity_Base{
