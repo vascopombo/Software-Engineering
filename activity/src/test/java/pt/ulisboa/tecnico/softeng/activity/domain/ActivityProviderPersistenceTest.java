@@ -1,6 +1,7 @@
 package pt.ulisboa.tecnico.softeng.activity.domain;
 
 import static org.junit.Assert.assertEquals;
+import org.joda.time.LocalDate;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +21,8 @@ public class ActivityProviderPersistenceTest {
 	private static final int MIN_AGE = 18;
 	private static final int MAX_AGE = 40;
 	private static final int CAPACITY= 22;
+	private final LocalDate begin = new LocalDate(2016, 12, 19);
+	private final LocalDate end = new LocalDate(2016, 12, 21);
 	
 	@Test
 	public void success() {
@@ -31,6 +34,7 @@ public class ActivityProviderPersistenceTest {
 	 public void atomicProcess() {
 		ActivityProvider ap = new ActivityProvider(PROVIDER_CODE, PROVIDER_NAME);
 		Activity a = new Activity(ap, ACTIVITY_NAME, MIN_AGE, MAX_AGE, CAPACITY);
+		ActivityOffer ao = new ActivityOffer(a, begin, end);
 	 }
 	
 	@Atomic(mode = TxMode.READ)
@@ -54,6 +58,16 @@ public class ActivityProviderPersistenceTest {
 			assertEquals(MIN_AGE, activity.getMinAge());
 			assertEquals(MAX_AGE, activity.getMaxAge());
 			assertEquals(CAPACITY, activity.getCapacity());
+			
+			assertEquals(1, activity.getActivityOfferSet().size());
+			
+			List<ActivityOffer> activityOffer = new ArrayList<>(activity.getActivityOfferSet());
+			ActivityOffer activityoffer = activityOffer.get(0);
+			
+			assertEquals(activity, activityoffer.getActivity());
+			assertEquals(begin,activityoffer.getBegin());
+			assertEquals(end, activityoffer.getEnd());
+			
 		}
 	
 		@After
