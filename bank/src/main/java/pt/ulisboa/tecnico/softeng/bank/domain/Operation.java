@@ -11,14 +11,14 @@ public class Operation extends Operation_Base{
 	private static int counter = 0;
 
 
-	private final Account account;
+	//private final Account account;
 
 	public Operation(Type type, Account account, int value) {
 		checkArguments(type, account, value);
 
 		setReference(account.getBank().getCode() + Integer.toString(++Operation.counter));
 		setType(type);
-		this.account = account;
+		setAccount(account);
 		setValue(value);
 		setTime(DateTime.now());
 
@@ -27,6 +27,7 @@ public class Operation extends Operation_Base{
 	
 	public void delete(){
 		setBank(null);
+		setAccount(null);
 		deleteDomainObject();
 	}
 	
@@ -35,17 +36,14 @@ public class Operation extends Operation_Base{
 			throw new BankException();
 		}
 	}
-	
-	public Account getAccount() {
-		return this.account;
-	}
+
 
 	public String revert() {
 		switch (this.getType()) {
 		case DEPOSIT:
-			return this.account.withdraw(this.getValue());
+			return getAccount().withdraw(this.getValue());
 		case WITHDRAW:
-			return this.account.deposit(this.getValue());
+			return getAccount().deposit(this.getValue());
 		default:
 			throw new BankException();
 
