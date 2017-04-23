@@ -16,11 +16,11 @@ public class Operation extends Operation_Base{
 	public Operation(Type type, Account account, int value) {
 		checkArguments(type, account, value);
 
-		this.setReference(account.getBank().getCode() + Integer.toString(++Operation.counter));
-		this.setType(type);
+		setReference(account.getBank().getCode() + Integer.toString(++Operation.counter));
+		setType(type);
 		this.account = account;
-		this.setValue(value);
-		this.setTime(DateTime.now());
+		setValue(value);
+		setTime(DateTime.now());
 
 		account.getBank().addOperation(this);
 	}
