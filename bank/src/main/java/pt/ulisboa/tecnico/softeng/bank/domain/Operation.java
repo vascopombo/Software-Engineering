@@ -10,9 +10,6 @@ public class Operation extends Operation_Base{
 
 	private static int counter = 0;
 
-
-	//private final Account account;
-
 	public Operation(Type type, Account account, int value) {
 		checkArguments(type, account, value);
 

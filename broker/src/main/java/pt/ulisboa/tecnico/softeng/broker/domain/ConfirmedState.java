@@ -76,9 +76,6 @@ public class ConfirmedState extends ConfirmedState_Base {
 			resetNumOfRemoteErrors();
 		}
 
-		// TODO: prints the complete Adventure file, the info in operation,
-		// reservation and booking
-
 	}
 
 }
