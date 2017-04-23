@@ -2,7 +2,6 @@ package pt.ulisboa.tecnico.softeng.activity.domain;
 
 import static org.junit.Assert.fail;
 
-import org.junit.After;
 import org.junit.Assert;
 import org.junit.Test;
 import pt.ist.fenixframework.FenixFramework;
