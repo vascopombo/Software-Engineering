@@ -20,7 +20,11 @@ public class Account extends Account_Base {
 	public void delete() {
 		setBank(null);
 		setClient(null);
-
+		
+		for(Operation operation : getOperationSet()) {
+			operation.delete();
+		}
+		
 		deleteDomainObject();
 	}
 
