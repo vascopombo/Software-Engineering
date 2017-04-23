@@ -79,13 +79,27 @@ public class BankPersistenceTest {
 		assertEquals(1000, operation1.getValue());
 		assertEquals(account1, operation1.getAccount());
 		assertTrue(operation1.getTime() != null);
-		assertEquals(operation1, bank.getOperation(operation1.getReference()));
 		
 		assertEquals(Type.WITHDRAW, operation2.getType());
 		assertEquals(500, operation2.getValue());
 		assertEquals(account1, operation2.getAccount());
 		assertTrue(operation2.getTime() != null);
-		assertEquals(operation2, bank.getOperation(operation2.getReference()));
+		
+		assertEquals(2, account1.getOperationSet().size());
+		List<Operation> ac_op = new ArrayList<>(account1.getOperationSet());
+		Operation ac_op1 = ac_op.get(0);
+		Operation ac_op2 = ac_op.get(1);
+		
+		assertEquals(Type.DEPOSIT, ac_op1.getType());
+		assertEquals(1000, ac_op1.getValue());
+		assertEquals(account1, ac_op1.getAccount());
+		assertTrue(ac_op1.getTime() != null);
+		
+		assertEquals(Type.WITHDRAW, ac_op2.getType());
+		assertEquals(500, ac_op2.getValue());
+		assertEquals(account1, ac_op2.getAccount());
+		assertTrue(ac_op2.getTime() != null);
+		
 	}
 
 	@After
