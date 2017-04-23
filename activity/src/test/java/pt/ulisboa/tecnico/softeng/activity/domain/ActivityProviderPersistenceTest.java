@@ -1,6 +1,6 @@
 package pt.ulisboa.tecnico.softeng.activity.domain;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 import org.joda.time.LocalDate;
 
 import java.util.ArrayList;
@@ -20,6 +20,7 @@ public class ActivityProviderPersistenceTest {
 	private static final String ACTIVITY_NAME = "futebol";
 	private static final int MIN_AGE = 18;
 	private static final int MAX_AGE = 40;
+	private static final int AGE = 25;
 	private static final int CAPACITY= 22;
 	private final LocalDate begin = new LocalDate(2016, 12, 19);
 	private final LocalDate end = new LocalDate(2016, 12, 21);
@@ -35,6 +36,7 @@ public class ActivityProviderPersistenceTest {
 		ActivityProvider ap = new ActivityProvider(PROVIDER_CODE, PROVIDER_NAME);
 		Activity a = new Activity(ap, ACTIVITY_NAME, MIN_AGE, MAX_AGE, CAPACITY);
 		ActivityOffer ao = new ActivityOffer(a, begin, end);
+		ap.reserveActivity(begin,end,AGE);
 	 }
 	
 	@Atomic(mode = TxMode.READ)
@@ -67,6 +69,14 @@ public class ActivityProviderPersistenceTest {
 			assertEquals(activity, activityoffer.getActivity());
 			assertEquals(begin,activityoffer.getBegin());
 			assertEquals(end, activityoffer.getEnd());
+			
+			List<Booking> bookings = new ArrayList<>(activityoffer.getBookingSet());
+			Booking booking = bookings.get(0);
+			
+			assertEquals(activityoffer, booking.getActivityOffer());
+			assertNotNull(booking.getReference());
+			assertNull(booking.getCancel());
+			assertNull(booking.getCancellationDate());
 			
 		}
 	
