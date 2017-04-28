@@ -28,12 +28,15 @@
 				<tr>
 					<th>Code</th>
 					<th>Name</th>
+					<th>Activities</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr th:each="provider: ${providers}">
 					<td th:text="${provider.code}">Code</td>
 					<td th:text="${provider.name}">Name</td>
+					<td><a
+						th:href="@{/providers/{code}/activities(code=${provider.code})}">Link</a></td>
 				</tr>
 			</tbody>
 		</table>
