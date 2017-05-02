@@ -35,6 +35,18 @@ public class HotelInterface {
 		new Hotel(hotelData.getCode(), hotelData.getName());
 	}
 
+
+	@Atomic(mode = TxMode.READ)
+	public static HotelData getHotelDataByCode(String hotelCode, CopyDepth depth) {
+		Hotel hotel = getHotelByCode(hotelCode);
+
+		if (hotel != null) {
+			return new HotelData(hotel, depth);
+		} else {
+			return null;
+		}
+	}
+
 	@Atomic(mode = TxMode.WRITE)
 	public static String reserveRoom(Room.Type type, LocalDate arrival, LocalDate departure) {
 		for (Hotel hotel : FenixFramework.getDomainRoot().getHotelSet()) {
@@ -98,6 +110,15 @@ public class HotelInterface {
 			}
 		}
 		return availableRooms;
+	}
+
+	private static Hotel getHotelByCode(String code) {
+		for (Hotel hotel : FenixFramework.getDomainRoot().getHotelSet()) {
+			if (hotel.getCode().equals(code)) {
+				return hotel;
+			}
+		}
+		return null;
 	}
 
 }
