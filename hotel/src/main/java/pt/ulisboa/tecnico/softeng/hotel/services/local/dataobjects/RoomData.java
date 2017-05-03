@@ -1,11 +1,12 @@
 package pt.ulisboa.tecnico.softeng.hotel.services.local.dataobjects;
 
 import pt.ulisboa.tecnico.softeng.hotel.domain.Room;
+import pt.ulisboa.tecnico.softeng.hotel.domain.Room.Type;
 
 public class RoomData {
 	
 	private String number;
-	private pt.ulisboa.tecnico.softeng.hotel.domain.Room.Type type;
+	private Type type;
 
 	public RoomData() {
 	}
@@ -24,11 +25,11 @@ public class RoomData {
 		this.number = number;
 	}
 
-	public pt.ulisboa.tecnico.softeng.hotel.domain.Room.Type getType() {
+	public Type getType() {
 		return this.type;
 	}
 
-	public void setType(pt.ulisboa.tecnico.softeng.hotel.domain.Room.Type type) {
+	public void setType(Type type) {
 		this.type = type;
 	}
 }

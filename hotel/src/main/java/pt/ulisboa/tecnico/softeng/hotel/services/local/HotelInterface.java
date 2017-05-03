@@ -13,10 +13,12 @@ import pt.ist.fenixframework.FenixFramework;
 import pt.ulisboa.tecnico.softeng.hotel.domain.Booking;
 import pt.ulisboa.tecnico.softeng.hotel.domain.Hotel;
 import pt.ulisboa.tecnico.softeng.hotel.domain.Room;
+import pt.ulisboa.tecnico.softeng.hotel.domain.Room.Type;
 import pt.ulisboa.tecnico.softeng.hotel.exception.HotelException;
 import pt.ulisboa.tecnico.softeng.hotel.services.local.dataobjects.RoomBookingData;
 import pt.ulisboa.tecnico.softeng.hotel.services.local.dataobjects.HotelData;
 import pt.ulisboa.tecnico.softeng.hotel.services.local.dataobjects.HotelData.CopyDepth;
+import pt.ulisboa.tecnico.softeng.hotel.services.local.dataobjects.RoomData;
 
 public class HotelInterface {
 
@@ -45,6 +47,11 @@ public class HotelInterface {
 		} else {
 			return null;
 		}
+	}
+
+	@Atomic(mode = TxMode.WRITE)
+	public static void createRoom(String hotelCode, RoomData roomData) {
+		new Room(getHotelByCode(hotelCode),roomData.getNumber(), roomData.getType());
 	}
 
 	@Atomic(mode = TxMode.WRITE)

@@ -4,14 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import pt.ulisboa.tecnico.softeng.hotel.domain.Hotel;
+import pt.ulisboa.tecnico.softeng.hotel.domain.Room;
 
 public class HotelData {
 	public static enum CopyDepth {
-		SHALLOW
+		SHALLOW,ROOMS
 	};
 
 	private String name;
 	private String code;
+	private List<RoomData> rooms = new ArrayList<>();
 
 	public HotelData() {
 	}
@@ -22,6 +24,11 @@ public class HotelData {
 
 
 		switch (depth) {
+		case ROOMS:
+			for (Room room : hotel.getRoomSet()) {
+				this.rooms.add(new RoomData(room));
+			}
+			break;
 		case SHALLOW:
 			break;
 		default:
