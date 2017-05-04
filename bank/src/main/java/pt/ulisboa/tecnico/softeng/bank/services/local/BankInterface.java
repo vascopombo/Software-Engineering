@@ -66,5 +66,23 @@ public class BankInterface {
 		}
 		return null;
 	}
-
+	
+	@Atomic(mode = TxMode.READ)
+	public static BankData getBankDataByCode(String bankCode, CopyDepth depth) {
+		Bank bank = getBankByCode(bankCode);
+		if (bank != null) {
+			return new BankData(bank, depth);
+		} else {
+			return null;
+		}
+	}
+	
+	private static Bank getBankByCode(String code) {
+		for (Bank bank : FenixFramework.getDomainRoot().getBankSet()) {
+			if (bank.getCode().equals(code)) {
+				return bank;
+			}
+		}
+		return null;
+	}
 }
