@@ -16,6 +16,8 @@ import pt.ulisboa.tecnico.softeng.activity.exception.ActivityException;
 import pt.ulisboa.tecnico.softeng.activity.services.local.dataobjects.ActivityProviderData;
 import pt.ulisboa.tecnico.softeng.activity.services.local.dataobjects.ActivityReservationData;
 import pt.ulisboa.tecnico.softeng.activity.services.local.dataobjects.ActivityProviderData.CopyDepth;
+import pt.ulisboa.tecnico.softeng.broker.domain.Broker;
+import pt.ulisboa.tecnico.softeng.broker.services.local.dataobjects.BrokerData;
 
 public class ActivityInterface {
 	
@@ -80,4 +82,22 @@ public class ActivityInterface {
 		return null;
 	}
 
+	@Atomic(mode = TxMode.READ)
+	public static ActivityProviderData getActivityProviderDataByCode(String providerCode, CopyDepth depth) {
+		ActivityProvider provider = getProviderByCode(providerCode);
+		if (provider != null) {
+			return new ActivityProviderData(provider, depth);
+		} else {
+			return null;
+		}
+	}
+	
+	private static ActivityProvider getProviderByCode(String code) {
+		for (ActivityProvider provider : FenixFramework.getDomainRoot().getActivityProviderSet()) {
+			if (provider.getCode().equals(code)) {
+				return provider;
+			}
+		}
+		return null;
+	}
 }
