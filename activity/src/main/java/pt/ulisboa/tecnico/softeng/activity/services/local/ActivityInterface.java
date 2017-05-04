@@ -16,8 +16,7 @@ import pt.ulisboa.tecnico.softeng.activity.exception.ActivityException;
 import pt.ulisboa.tecnico.softeng.activity.services.local.dataobjects.ActivityProviderData;
 import pt.ulisboa.tecnico.softeng.activity.services.local.dataobjects.ActivityReservationData;
 import pt.ulisboa.tecnico.softeng.activity.services.local.dataobjects.ActivityProviderData.CopyDepth;
-import pt.ulisboa.tecnico.softeng.broker.domain.Broker;
-import pt.ulisboa.tecnico.softeng.broker.services.local.dataobjects.BrokerData;
+
 
 public class ActivityInterface {
 	
