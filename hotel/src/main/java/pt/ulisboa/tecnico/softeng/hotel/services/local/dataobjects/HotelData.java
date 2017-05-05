@@ -13,7 +13,7 @@ public class HotelData {
 
 	private String name;
 	private String code;
-	private List<RoomData> rooms = new ArrayList<>();
+	public List<RoomData> rooms = new ArrayList<>();
 
 	public HotelData() {
 	}
