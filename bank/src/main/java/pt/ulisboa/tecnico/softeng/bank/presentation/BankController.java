@@ -1,4 +1,4 @@
-package presentation;
+package pt.ulisboa.tecnico.softeng.bank.presentation;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
