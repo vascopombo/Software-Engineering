@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import pt.ulisboa.tecnico.softeng.activity.domain.ActivityProvider;
+import pt.ulisboa.tecnico.softeng.activity.domain.Activity;
 
 
 public class ActivityProviderData {
@@ -14,7 +15,7 @@ public class ActivityProviderData {
 
 	private String name;
 	private String code;
-	//private List<ActivityData> activities = new ArrayList<>();
+	private List<ActivityData> activities = new ArrayList<>();
 	
 	public ActivityProviderData() {
 	}
@@ -25,9 +26,9 @@ public class ActivityProviderData {
 
 		switch (depth) {
 		case ACTIVITIES:
-//			for (Activity activity : provider.getActivitySet()) {
-//				this.activities.add(new ActivityData(activity));
-//			}
+			for (Activity activity : provider.getActivitySet()) {
+				this.activities.add(new ActivityData(activity));
+			}
 			break;
 		case SHALLOW:
 			break;
@@ -53,12 +54,12 @@ public class ActivityProviderData {
 		this.code = code;
 	}
 
-//	public List<ActivityData> getActivities() {
-//		return this.activities;
-//	}
+	public List<ActivityData> getActivities() {
+		return this.activities;
+	}
 
-//	public void setActivities(List<ActivityData> activities) {
-//		this.activities = activities;
-//	}
+	public void setActivities(List<ActivityData> activities) {
+		this.activities = activities;
+	}
 
 }
