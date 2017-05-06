@@ -26,7 +26,7 @@ public class BankInterface {
 
 	@Atomic(mode = TxMode.WRITE)
 	public static void createBank(BankData bankData) {
-		new Bank(bankData.getCode(), bankData.getName());
+		new Bank(bankData.getName(), bankData.getCode());
 	}
 
 	@Atomic(mode = TxMode.WRITE)
