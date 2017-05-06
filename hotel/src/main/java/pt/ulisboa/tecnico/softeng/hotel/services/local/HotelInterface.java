@@ -80,7 +80,9 @@ public class HotelInterface {
 
 	@Atomic(mode = TxMode.WRITE)
 	public static void createBooking(String roomNumber, RoomBookingData bookingData) {
-		new Booking(getRoomByNumber(roomNumber),bookingData.getArrival(), bookingData.getDeparture());
+		Room room = getRoomByNumber(roomNumber);
+		Type typer = room.getType();
+		reserveRoom(typer, bookingData.getArrival(), bookingData.getDeparture());
 	}
 
 	@Atomic(mode = TxMode.WRITE)

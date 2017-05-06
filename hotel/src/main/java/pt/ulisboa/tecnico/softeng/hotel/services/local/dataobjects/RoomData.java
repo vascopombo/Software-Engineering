@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Set;
 
 import pt.ulisboa.tecnico.softeng.hotel.domain.Room;
+import pt.ulisboa.tecnico.softeng.hotel.domain.Booking;
 import pt.ulisboa.tecnico.softeng.hotel.domain.Room.Type;
 
 public class RoomData {
@@ -20,6 +21,10 @@ public class RoomData {
 	public RoomData(Room room) {
 		this.number = room.getNumber();
 		this.type = room.getType();
+
+		for (Booking booking : room.getBookingSet()) {
+				this.bookings.add(new RoomBookingData(room, booking));
+			}
 
 	}
 
@@ -37,5 +42,13 @@ public class RoomData {
 
 	public void setType(Type type) {
 		this.type = type;
+	}
+
+	public List<RoomBookingData> getBookings() {
+		return this.bookings;
+	}
+
+	public void setBookings(List<RoomBookingData> bookings) {
+		this.bookings = bookings;
 	}
 }

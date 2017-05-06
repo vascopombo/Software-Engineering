@@ -13,6 +13,7 @@
 		<h2>
 			Welcome to Hotel <span th:text="${hotel.name}">Name</span> Rooms
 		</h2>
+		<a class="btn btn-default pull-right" th:href="@{/hotels}">Hotels</a>
 		<br/>
 		<h3>Create Room</h3>
 		<p class="text-danger" th:text="${error}">Error</p>

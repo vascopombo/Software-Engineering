@@ -28,7 +28,7 @@ public class BookingController {
 		RoomData roomData = HotelInterface.getRoomDataByNumber(roomNumber);
 
 		if (roomData == null) {
-			model.addAttribute("error", "Error: it does not exist a hotel with the code " + roomNumber);
+			model.addAttribute("error", "Error: it does not exist a room with the number " + roomNumber);
 			model.addAttribute("room", new RoomData());
 			model.addAttribute("rooms", HotelInterface.getRooms());
 			return "hotels";
@@ -48,7 +48,7 @@ public class BookingController {
 		try {
 			HotelInterface.createBooking(roomNumber, bookingData);
 		} catch (HotelException be) {
-			model.addAttribute("error", "Error: it was not possible to create the room");
+			model.addAttribute("error", "Error: it was not possible to create the booking");
 			model.addAttribute("booking", bookingData);
 			model.addAttribute("room", HotelInterface.getRoomDataByNumber(roomNumber));
 			return "bookings";
