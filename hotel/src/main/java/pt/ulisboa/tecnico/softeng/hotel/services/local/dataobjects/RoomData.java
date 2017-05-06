@@ -1,9 +1,7 @@
 package pt.ulisboa.tecnico.softeng.hotel.services.local.dataobjects;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import pt.ulisboa.tecnico.softeng.hotel.domain.Room;
 import pt.ulisboa.tecnico.softeng.hotel.domain.Booking;
