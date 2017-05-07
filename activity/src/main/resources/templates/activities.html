@@ -13,6 +13,7 @@
 		<h2>
 			Welcome to Activity Provider's <span th:text="${provider.name}">Name</span> Activity
 		</h2>
+		<a class="btn btn-default pull-right" th:href="@{/providers}">Providers</a>
 		<br/>
 		<h3>Create Activity</h3>
 		<p class="text-danger" th:text="${error}">Error</p>
@@ -28,6 +29,7 @@
 		<table class="table table-striped">
 			<thead>
 				<tr>
+					<th>Code</th>
 					<th>Name</th>
 					<th>MinAge</th>
 					<th>MaxAge</th>
@@ -37,12 +39,13 @@
 			</thead>
 			<tbody>
 				<tr th:each="activity: ${provider.activities}">
+					<td th:text="${activity.code}">code</td>
  					<td th:text="${activity.name}">name</td>
  					<td th:text="${activity.minAge}">minAge</td>
  					<td th:text="${activity.maxAge}">maxAge</td>
  					<td th:text="${activity.capacity}">capacity</td>
  					<td><a
-						th:href="@{/providers/{code}/activities/ActivityOffers(code=${activity.name})}">Link</a></td>
+						th:href="@{/providers/{code}/activities/{code}/ActivityOffers(code=${activity.name})}">Link</a></td>
 				</tr>
 			</tbody>
 		</table>
