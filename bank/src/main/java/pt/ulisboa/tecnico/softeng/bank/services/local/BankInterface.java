@@ -6,10 +6,12 @@ import java.util.List;
 import pt.ist.fenixframework.Atomic;
 import pt.ist.fenixframework.Atomic.TxMode;
 import pt.ist.fenixframework.FenixFramework;
+import pt.ulisboa.tecnico.softeng.bank.domain.Account;
 import pt.ulisboa.tecnico.softeng.bank.domain.Bank;
 import pt.ulisboa.tecnico.softeng.bank.domain.Client;
 import pt.ulisboa.tecnico.softeng.bank.domain.Operation;
 import pt.ulisboa.tecnico.softeng.bank.exception.BankException;
+import pt.ulisboa.tecnico.softeng.bank.services.local.dataobjects.AccountData;
 import pt.ulisboa.tecnico.softeng.bank.services.local.dataobjects.BankData;
 import pt.ulisboa.tecnico.softeng.bank.services.local.dataobjects.BankData.CopyDepth;
 import pt.ulisboa.tecnico.softeng.bank.services.local.dataobjects.BankOperationData;
@@ -48,7 +50,25 @@ public class BankInterface {
 	public static void createClient(String bankCode, ClientData clientData) {
 		new Client(getBankByCode(bankCode),clientData.getName());
 	}
-
+	
+	
+	
+	@Atomic(mode = TxMode.WRITE)
+	public static void createAccount(String bankCode,String clientId) {
+		new Account(getBankByCode(bankCode),getClientById(bankCode,clientId));
+	}
+	
+	@Atomic(mode = TxMode.WRITE)
+	public static void createOperation(String accountIban, int value) {
+		if(value<0){
+			value = value*(-1);
+			getAccountByIban(accountIban).withdraw(value);
+		}
+		else if(value>0){
+			getAccountByIban(accountIban).deposit(value);
+		}
+	}
+	
 
 	@Atomic(mode = TxMode.WRITE)
 	public static String processPayment(String IBAN, int amount) {
@@ -107,7 +127,18 @@ public class BankInterface {
 			return null;
 		}
 	}
-			
+	
+	@Atomic(mode = TxMode.READ)
+	public static AccountData getAccountDataByIban(String accountIban) {
+		Account account = getAccountByIban(accountIban);
+		if (account != null) {
+			return new AccountData(account);
+		} else {
+			return null;
+		}
+	}
+	
+		
 	private static Bank getBankByCode(String code) {
 		for (Bank bank : FenixFramework.getDomainRoot().getBankSet()) {
 			if (bank.getCode().equals(code)) {
@@ -127,5 +158,18 @@ public class BankInterface {
 
 		return null;
 	}
+	
+	private static Account getAccountByIban(String iban) {
+		for (Bank bank : FenixFramework.getDomainRoot().getBankSet()) {
+			for(Client client : bank.getClientSet()){
+				for(Account account : client.getAccountSet()){
+					if(account.getIBAN().equals(iban)){
+						return account;
+					}
+				}
+			}
 
+		}
+		return null;
+	}
 }
