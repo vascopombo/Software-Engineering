@@ -73,7 +73,7 @@ public class ActivityData {
 	}
 	
 	public List<ActivityOfferData> getOffers() {
-		return this.getOffers();
+		return this.offers;
 	}
 	
 	public void setOffers(List<ActivityOfferData> offers) {

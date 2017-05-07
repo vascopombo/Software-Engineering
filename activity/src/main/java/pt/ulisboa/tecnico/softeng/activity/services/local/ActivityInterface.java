@@ -109,20 +109,44 @@ public class ActivityInterface {
 		new Activity(getProviderByCode(providerCode), activityData.getName(), activityData.getMinAge(), activityData.getMaxAge(), activityData.getCapacity());
 	}
 	
+	
 	@Atomic(mode = TxMode.WRITE)
-	public static void createOffer(String providerCode, String activityCode, ActivityOfferData activityOfferData) {
-		ActivityProvider activityProvider = getProviderByCode(providerCode);
-		Activity activity = null;
-		for(Activity act : activityProvider.getActivitySet()){
-			if(activityCode.equals(act.getCode())) {
-				activity = act;
+	public static void createOffer(String activityCode, ActivityOfferData offerData) {
+		Activity activity = getActivityByCode(activityCode);
+		new ActivityOffer(activity, offerData.getBegin(), offerData.getEnd());
+	}
+	
+	@Atomic(mode = TxMode.READ)
+	public static ActivityData getActivityDataByCode(String Code) {
+		Activity activity = getActivityByCode(Code);
+
+		if (activity != null) {
+			return new ActivityData(activity);
+		} else {
+			return null;
+		}
+	}
+	
+	@Atomic(mode = TxMode.READ)
+	public static List<ActivityData> getActivities() {
+		List<ActivityData> activities = new ArrayList<>();
+		for (ActivityProvider provider : FenixFramework.getDomainRoot().getActivityProviderSet()) {
+			for (Activity activity : provider.getActivitySet()) {
+				activities.add(new ActivityData(activity));
+				}
+			}
+		
+		return activities;
+	}
+	
+	private static Activity getActivityByCode(String Code) {
+		for (ActivityProvider provider : FenixFramework.getDomainRoot().getActivityProviderSet()) {
+			for (Activity activity : provider.getActivitySet()) {
+				if (activity.getCode().equals(Code)) {
+					return activity;
+				}
 			}
 		}
-		if(activity.equals(null)){
-			throw new ActivityException();
-		}
-		else{
-			new ActivityOffer(activity, activityOfferData.getBegin(), activityOfferData.getEnd());
-		}	
+		return null;
 	}
 }

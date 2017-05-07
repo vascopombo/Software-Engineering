@@ -2,14 +2,16 @@ package pt.ulisboa.tecnico.softeng.activity.services.local.dataobjects;
 
 import java.util.Set;
 import org.joda.time.LocalDate;
-
+import org.springframework.format.annotation.DateTimeFormat;
 
 import pt.ulisboa.tecnico.softeng.activity.domain.ActivityOffer;
 import pt.ulisboa.tecnico.softeng.activity.domain.Booking;
 
 public class ActivityOfferData {
-		
+	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate begin;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate end;
 	private int capacity;
 	private Set<ActivityReservationData> bookings;
