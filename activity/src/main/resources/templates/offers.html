@@ -19,7 +19,7 @@
 		<br/>
 		<h3>Create Offer</h3>
 		<p class="text-danger" th:text="${error}">Error</p>
-		<form class="form-inline" th:action="@{/providers/{code}/activities/{code}/offers(code=${activity.code})}" th:object="${offer}" method="post">
+		<form class="form-inline" th:action="@{/providers/{providerCode}/activities/{code}/offers(providerCode=${provider.code},code=${activity.code})}" th:object="${offer}" method="post">
 			<label>Begin: </label> <input class="form-control" type="date" th:field="*{begin}" />  
 			<label>End: </label> <input class="form-control" type="date" th:field="*{end}" />  
 			<input class="btn btn-primary" type="submit" value="Submit" />
@@ -39,6 +39,8 @@
 					<td th:text="${offer.begin}">begin</td>
  					<td th:text="${offer.end}">end</td>
  					<td th:text="${offer.capacity}">capacity</td>
+ 					<td><a 
+ 					th:href="@{/providers/{providerCode}/activities/{activityCode}/offers/{code}(providerCode=${provider.code},activityCode=${activity.code},code=${offer.code})}">Link</a></td>
 				</tr>
 			</tbody>
 			

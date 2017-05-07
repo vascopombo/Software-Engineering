@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Bookings</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<link rel="stylesheet"
+	th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}" />
+
+<script th:src="@{/webjars/jquery/3.1.1/jquery.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
+</head>
+<body>
+	<div class="container">
+		<h2>
+			Welcome to Offer <span th:text="${offer.name}">Name</span> Bookings
+		</h2>
+		<a class="btn btn-default pull-right" th:href="@{/providers}">Providers</a>
+		<br/>
+		<h3>List of Reservations</h3>
+ 		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>Reference</th>
+ 					<th>Cancellation Reference</th>
+					<th>Cancellation Date</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="booking: ${offer.bookings}">
+					<td th:text="${booking.reference}">reference</td>
+ 					<td th:text="${booking.cancel}">cancel</td>
+					<td th:text="${booking.cancellationDate}">cancellationDate</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>

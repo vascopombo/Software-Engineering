@@ -12,6 +12,8 @@ import pt.ulisboa.tecnico.softeng.activity.exception.ActivityException;
 import pt.ulisboa.tecnico.softeng.activity.services.local.ActivityInterface;
 import pt.ulisboa.tecnico.softeng.activity.services.local.dataobjects.ActivityData;
 import pt.ulisboa.tecnico.softeng.activity.services.local.dataobjects.ActivityOfferData;
+import pt.ulisboa.tecnico.softeng.activity.services.local.dataobjects.ActivityProviderData;
+import pt.ulisboa.tecnico.softeng.activity.services.local.dataobjects.ActivityProviderData.CopyDepth;
 
 import org.springframework.web.bind.annotation.PathVariable;
 
@@ -22,10 +24,11 @@ public class ActivityOfferController {
 	
 	
 	@RequestMapping(method = RequestMethod.GET)
-	public String showOffers(Model model, @PathVariable String activityCode) {
-		logger.info("showOffers activityCode:{}",activityCode);
+	public String showOffers(Model model,@PathVariable String providerCode, @PathVariable String activityCode) {
+		logger.info("showOffers providerCode:{} activityCode:{}",providerCode ,activityCode);
 		
 		ActivityData activityData = ActivityInterface.getActivityDataByCode(activityCode);
+		ActivityProviderData providerData = ActivityInterface.getActivityProviderDataByCode(providerCode, CopyDepth.ACTIVITIES);
 		
 		if (activityData == null) {
 			model.addAttribute("error", "Error: it does not exist a activity with the code " + activityCode);
@@ -34,6 +37,7 @@ public class ActivityOfferController {
 			return "providers";
 		} else {
 			model.addAttribute("offer", new ActivityOfferData());
+			model.addAttribute("provider", providerData);
 			model.addAttribute("activity", activityData);
 			return "offers";
 		}
@@ -44,8 +48,7 @@ public class ActivityOfferController {
 			@PathVariable String activityCode, @ModelAttribute ActivityOfferData activityOfferData) {
 		
 		logger.info("submitOffer providerCode:{}, activityCode:{}, begin:{}, end:{}", providerCode, activityCode, activityOfferData.getBegin(), 
-				activityOfferData.getEnd());
-		
+				activityOfferData.getEnd());		
 		
 		try{
 			ActivityInterface.createOffer(activityCode, activityOfferData);
@@ -53,6 +56,7 @@ public class ActivityOfferController {
 			model.addAttribute("error", "Error: it was not possible to create the offer");
 			model.addAttribute("offer", activityOfferData);
 			model.addAttribute("activity", ActivityInterface.getActivityDataByCode(activityCode));
+			model.addAttribute("provider", ActivityInterface.getActivityProviderDataByCode(providerCode, CopyDepth.ACTIVITIES));
 			return "offers";			
 		}
 		return "redirect:/provider/" + providerCode + "/activities/"+ activityCode + "/offers";
