@@ -1,9 +1,9 @@
 package pt.ulisboa.tecnico.softeng.activity.services.local.dataobjects;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import pt.ulisboa.tecnico.softeng.activity.domain.Activity;
+import pt.ulisboa.tecnico.softeng.activity.domain.ActivityOffer;
 
 public class ActivityData {
 
@@ -12,7 +12,8 @@ public class ActivityData {
 	private int minAge;
 	private int maxAge;
 	private int capacity;
-	
+	private List<ActivityOfferData> offers;
+
 	
 	public ActivityData(){
 	
@@ -25,6 +26,10 @@ public class ActivityData {
 		this.minAge = activity.getMinAge();
 		this.maxAge = activity.getMaxAge();
 		this.capacity = activity.getCapacity();
+
+		for (ActivityOffer offer : activity.getActivityOfferSet()) {
+			this.offers.add(new ActivityOfferData(offer));
+		}
 	}
 	
 	public String getName() {
@@ -65,6 +70,14 @@ public class ActivityData {
 
 	public void setCapacity(int capacity) {
 		this.capacity = capacity;
+	}
+	
+	public List<ActivityOfferData> getOffers() {
+		return this.getOffers();
+	}
+	
+	public void setOffers(List<ActivityOfferData> offers) {
+		this.offers = offers;
 	}
 
 }
