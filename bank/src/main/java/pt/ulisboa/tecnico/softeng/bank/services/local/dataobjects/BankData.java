@@ -1,16 +1,23 @@
 package pt.ulisboa.tecnico.softeng.bank.services.local.dataobjects;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 import pt.ulisboa.tecnico.softeng.bank.domain.Bank;
-
+import pt.ulisboa.tecnico.softeng.bank.domain.Client;
 
 public class BankData {
 	public static enum CopyDepth {
-		SHALLOW
+		SHALLOW, CLIENTS
 	};
 
 	private String name;
 	private String code;
+	
+	
+
+	private List<ClientData> clients = new ArrayList<>();
 
 	public BankData() {
 	}
@@ -22,7 +29,12 @@ public class BankData {
 
 		switch (depth) {
 		case SHALLOW:
-			break;
+			break;		
+		case CLIENTS:
+			   for (Client client : bank.getClientSet()) {
+			    this.clients.add(new ClientData(client, ClientData.CopyDepth2.ACCOUNTS));
+			   }
+			   break;
 		default:
 			break;
 		}
@@ -43,4 +55,13 @@ public class BankData {
 	public void setCode(String code) {
 		this.code = code;
 	}
+
+	public List<ClientData> getClients() {
+		return this.clients;
+	}
+
+	public void setClients(List<ClientData> clients) {
+		this.clients = clients;
+	}
+	
 }

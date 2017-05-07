@@ -7,11 +7,14 @@ import pt.ist.fenixframework.Atomic;
 import pt.ist.fenixframework.Atomic.TxMode;
 import pt.ist.fenixframework.FenixFramework;
 import pt.ulisboa.tecnico.softeng.bank.domain.Bank;
+import pt.ulisboa.tecnico.softeng.bank.domain.Client;
 import pt.ulisboa.tecnico.softeng.bank.domain.Operation;
 import pt.ulisboa.tecnico.softeng.bank.exception.BankException;
 import pt.ulisboa.tecnico.softeng.bank.services.local.dataobjects.BankData;
-import pt.ulisboa.tecnico.softeng.bank.services.local.dataobjects.BankOperationData;
 import pt.ulisboa.tecnico.softeng.bank.services.local.dataobjects.BankData.CopyDepth;
+import pt.ulisboa.tecnico.softeng.bank.services.local.dataobjects.BankOperationData;
+import pt.ulisboa.tecnico.softeng.bank.services.local.dataobjects.ClientData;
+import pt.ulisboa.tecnico.softeng.bank.services.local.dataobjects.ClientData.CopyDepth2;
 
 public class BankInterface {
 	
@@ -28,6 +31,24 @@ public class BankInterface {
 	public static void createBank(BankData bankData) {
 		new Bank(bankData.getName(), bankData.getCode());
 	}
+	
+	@Atomic(mode = TxMode.READ)
+	public static List<ClientData> getClients() {
+		List<ClientData> clients = new ArrayList<>();
+		for (Bank bank : FenixFramework.getDomainRoot().getBankSet()) {
+			for (Client client : bank.getClientSet()) {
+				clients.add(new ClientData(client, ClientData.CopyDepth2.ACCOUNTS));
+				}
+			}
+		
+		return clients;
+	}
+	
+	@Atomic(mode = TxMode.WRITE)
+	public static void createClient(String bankCode, ClientData clientData) {
+		new Client(getBankByCode(bankCode),clientData.getName());
+	}
+
 
 	@Atomic(mode = TxMode.WRITE)
 	public static String processPayment(String IBAN, int amount) {
@@ -77,6 +98,16 @@ public class BankInterface {
 		}
 	}
 	
+	@Atomic(mode = TxMode.READ)
+	public static ClientData getClientDataById(String bankCode, String clientId, CopyDepth2 depth) {
+		Client client = getClientById(bankCode, clientId);
+		if (client != null) {
+			return new ClientData(client, depth);
+		} else {
+			return null;
+		}
+	}
+			
 	private static Bank getBankByCode(String code) {
 		for (Bank bank : FenixFramework.getDomainRoot().getBankSet()) {
 			if (bank.getCode().equals(code)) {
@@ -85,4 +116,16 @@ public class BankInterface {
 		}
 		return null;
 	}
+	
+	private static Client getClientById(String bankCode , String id) {
+		Bank bank = getBankByCode(bankCode);
+			for(Client client : bank.getClientSet()){
+				if (client.getID().equals(id)) {
+					return client;
+				}
+			}
+
+		return null;
+	}
+
 }
