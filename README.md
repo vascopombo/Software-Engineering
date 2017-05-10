@@ -13,7 +13,8 @@ To run jmeter (nogui) execute in project's top directory: mvn -Pjmeter verify. R
 
 |   Number   |          Name           |            Email        |   Name GitHUb  | Module(s) |
 | ---------- | ----------------------- | ----------------------- | ---------------| --------- |
-|            |                         |                         |                |           |
+|    70466   |   Hugo Almeida          |  hugomiguelfa@gmail.com | almeidahugo    | 100Reads  |
+|    76508   |   Bruno Soalheira       |  bruno.1994.0@gmail.com | brunopkr       | 100Reads  |
 |            |                         |                         |                |           |
 |            |                         |                         |                |           |
 |            |                         |                         |                |           |
