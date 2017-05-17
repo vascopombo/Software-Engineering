@@ -3,3 +3,8 @@ BK01,Hugo
 BK01,Francisco
 BK01,Pedro
 BK01,Marco
+BK02,Manel
+BK02,Hugo
+BK02,Francisco
+BK02,Pedro
+BK02,Marco
