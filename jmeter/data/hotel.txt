@@ -1,2 +1,2 @@
 HT00123,Sheraton
-HT00124,Tivoli
+HT00124,Hilton
